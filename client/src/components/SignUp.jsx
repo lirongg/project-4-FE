@@ -1,15 +1,23 @@
 import React, { useState } from 'react';
+import { signUp } from "../utilities/users-api";
 
 const SignUp = ({ setUser }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSignUp = (e) => {
+  async function handleSignUp(e) {
     e.preventDefault();
-    // Add your sign-up logic here (e.g., API request, user registration)
-    // Example: registerUser(username, email, password)
-    // setUser(user); // Set user object after successful sign-up
+    try {
+      const userInput = { username, email, password };
+      const { token } = await signUp(userInput);
+      localStorage.setItem('token', token);
+      setUser(userInput);
+      alert("Sign up is successful");
+    } catch (error) {
+      console.log(error);
+      alert("An error occurred. Please try again");
+    }
     console.log('Sign up with:', username, email, password);
   };
 

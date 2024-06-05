@@ -5,7 +5,8 @@ const Navbar = ({ user, handleSignOut }) => {
   return (
     <nav>
       <div className="logo">
-        <Link to="/">MyApp</Link>
+      <div>Welcome, {user} </div>
+        <Link to="/">Home</Link>
       </div>
       <div className="nav-links">
         <Link to="/dashboard">Dashboard</Link>

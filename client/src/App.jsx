@@ -8,9 +8,10 @@ import Dashboard from './pages/Dashboard';
 import MyProfile from './pages/Profile';
 import Search from './pages/Search';
 import CreateItem from './pages/CreateItem';
+import {getUser} from "./utilities/users-service";
 
 function App() {
-  const [user, setUser] = useState(1);
+  const [user, setUser] = useState(getUser());
   // State is temporary at 1 so user do not have to login in be in homepage, to change to null
 
   const handleSignOut = () => {
