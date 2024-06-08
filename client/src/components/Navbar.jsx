@@ -12,7 +12,8 @@ const Navbar = ({ user, handleSignOut }) => {
         <Link to="/">Dashboard</Link>
         <Link to="/myprofile">My Profile</Link>
         <Link to="/search">Search</Link>
-        <Link to="/create">Create Item</Link>
+        <Link to="/view">View Items</Link>
+
         {user && (
           <button onClick={handleSignOut}>Sign Out</button>
         )}

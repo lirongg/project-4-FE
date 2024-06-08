@@ -13,3 +13,11 @@ export function signUp(userInput) {
 export function createItem(userInput) {
     return sendRequest(`${BASE_URL}/items/create`, 'POST', userInput)
 }
+
+export function getUserListing(id){
+    return sendRequest(`${BASE_URL}/items/${id}`)
+}
+
+export function getListing(id){
+    return sendRequest(`${BASE_URL}/items/`)
+}
