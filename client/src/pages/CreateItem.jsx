@@ -1,25 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { createItem } from "../utilities/users-api";
 
-const CreateItem = ({ addItem }) => {
-  const [itemName, setItemName] = useState('');
-  const [location, setLocation] = useState('');
-  const [description, setDescription] = useState('');
+function CreateItem() {
+  const [newItem, setNewItem] = useState({
+    item: "",
+    location: "",
+    description: "",
+  });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Create new item object
-    const newItem = {
-      name: itemName,
-      location,
-      description
-    };
-    // Pass newItem to parent component (e.g., App) for handling
-    addItem(newItem);
-    // Reset form fields after submission
-    setItemName('');
-    setLocation('');
-    setDescription('');
-  };
+  function handleChange(evt) {
+    setNewItem({ ...newItem, [evt.target.name]: evt.target.value });
+  }
+
+async function handleSubmit(evt) {
+  evt.preventDefault();
+  try {
+    await createItem(newItem);
+    alert("Item created!");
+    setNewItem({
+      item: "",
+      location: "",
+      description: "",
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 
   return (
     <div>
@@ -28,17 +35,19 @@ const CreateItem = ({ addItem }) => {
         <label>
           Item Name:
           <input
+          name="item"
             type="text"
-            value={itemName}
-            onChange={(e) => setItemName(e.target.value)}
+            value={newItem.item}
+            onChange={handleChange}
             required
           />
         </label>
         <label>
           Location:
           <select
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
+          name="location"
+            value={newItem.location}
+            onChange={handleChange}
             required
           >
             <option value="">Select Location</option>
@@ -51,8 +60,9 @@ const CreateItem = ({ addItem }) => {
         <label>
           Description:
           <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+          name="description"
+            value={newItem.description}
+            onChange={handleChange}
             required
           />
         </label>
@@ -60,6 +70,6 @@ const CreateItem = ({ addItem }) => {
       </form>
     </div>
   );
-};
+}
 
 export default CreateItem;
