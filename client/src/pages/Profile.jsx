@@ -7,7 +7,7 @@ const MyProfile = ({ user }) => {
       {/* Display user information and profile content */}
       {user && (
         <div>
-          <p>Welcome, {user.username}!</p>
+          <p>Welcome, {user.name}!</p>
           {/* Add more profile details and functionalities */}
         </div>
       )}
