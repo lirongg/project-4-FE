@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import SignOut from './SignOut';
 
-const Navbar = ({ user, handleSignOut }) => {
+const Navbar = ({ user, setUser }) => {
   return (
     <nav>
       <div className="logo">
@@ -10,13 +11,18 @@ const Navbar = ({ user, handleSignOut }) => {
       </div>
       <div className="nav-links">
         <Link to="/">Dashboard</Link>
+        <br />
         <Link to="/myprofile">My Profile</Link>
+        <br />
         <Link to="/search">Search</Link>
+        <br />
         <Link to="/view">View Items</Link>
+        <br />
 
-        {user && (
-          <button onClick={handleSignOut}>Sign Out</button>
-        )}
+        <SignOut user={user} setUser={setUser} />
+
+
+        
       </div>
     </nav>
   );
