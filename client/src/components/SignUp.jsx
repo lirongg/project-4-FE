@@ -1,55 +1,60 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { signUp } from "../utilities/users-api";
 
-const SignUp = ({ setUser }) => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+function SignUp() {
+  const [state, setState] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
 
-  async function handleSignUp(e) {
+  function handleChange(evt) {
+    setState({ ...state, [evt.target.name]: evt.target.value });
+  }
+
+  async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const userInput = { username, email, password };
-      const { token } = await signUp(userInput);
-      localStorage.setItem('token', token);
-      setUser(userInput);
-      alert("Sign up is successful");
+      await signUp(state);
+      alert("Sign up is successful! Please sign in now!");
     } catch (error) {
       console.log(error);
-      alert("An error occurred. Please try again");
+      alert("An error occurred. Please try again!");
     }
-    console.log('Sign up with:', username, email, password);
-  };
+  }
 
   return (
     <div>
       <h2>Sign Up</h2>
-      <form onSubmit={handleSignUp}>
-        <label>Username:</label>
+      <form onSubmit={handleSubmit}>
+        <label>Name:</label>
         <input
+          name="name"
           type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={state.name}
+          onChange={handleChange}
           required
         />
         <label>Email:</label>
         <input
+          name="email"
           type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={state.email}
+          onChange={handleChange}
           required
         />
         <label>Password:</label>
         <input
+          name="password"
           type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={state.password}
+          onChange={handleChange}
           required
         />
         <button type="submit">Sign Up</button>
       </form>
     </div>
   );
-};
+}
 
 export default SignUp;
