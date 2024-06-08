@@ -46,8 +46,12 @@ export function logOut() {
 }
 
 export async function signIn(credentials) {
-    const token = await usersAPI.signIn(credentials);
+        console.log('Starting sign-in process...');
+        const {email, password} = credentials;
+    const token = await usersAPI.signIn({email,password});
+    console.log('Sign-in successful. Received token:', token);
     localStorage.setItem('token', token);
+    console.log('Token saved to localstorage');
 
     const tokenFromLs = localStorage.getItem('token');
     if (!tokenFromLs || !isValidToken(tokenFromLs)){

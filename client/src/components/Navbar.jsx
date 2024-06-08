@@ -5,11 +5,11 @@ const Navbar = ({ user, handleSignOut }) => {
   return (
     <nav>
       <div className="logo">
-      <div>Welcome, {user} </div>
+      <div>Welcome, {user.name} </div>
         <Link to="/">Home</Link>
       </div>
       <div className="nav-links">
-        <Link to="/dashboard">Dashboard</Link>
+        <Link to="/">Dashboard</Link>
         <Link to="/myprofile">My Profile</Link>
         <Link to="/search">Search</Link>
         <Link to="/create">Create Item</Link>
