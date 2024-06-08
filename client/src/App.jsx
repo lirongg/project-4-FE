@@ -11,7 +11,7 @@ import CreateItem from './pages/CreateItem';
 import {getUser} from "./utilities/users-service";
 
 function App() {
-  const [user, setUser] = useState(getUser());
+  const [user, setUser] = useState(1);
   // State is temporary at 1 so user do not have to login in be in homepage, to change to null
 
   const handleSignOut = () => {
@@ -30,7 +30,7 @@ function App() {
             />
             <Routes>
               <Route path="/profile" element={<Profile user={user} />} />
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/" element={<Dashboard />} />
               <Route path="/myprofile" element={<MyProfile user={user} />} />
               <Route path="/search" element={<Search />} />
               <Route path="/create" element={<CreateItem />}/>
