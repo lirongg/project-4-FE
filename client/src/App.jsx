@@ -10,6 +10,7 @@ import Search from './pages/Search';
 import CreateItem from './pages/CreateItem';
 import * as usersService from "./utilities/users-service";
 import {getUser} from "./utilities/users-service";
+import ViewItems from './pages/ViewItems';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -43,6 +44,7 @@ function App() {
               <Route path="/myprofile" element={<MyProfile user={user} />} />
               <Route path="/search" element={<Search />} />
               <Route path="/create" element={<CreateItem />}/>
+              <Route path="/view" element={<ViewItems />}/>
             </Routes>
           </Router>
         ) : (
