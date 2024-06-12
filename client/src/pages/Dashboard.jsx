@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CalculateItems from '../components/CalculateItems';
-import { getListing } from '../utilities/users-api';
+import { getItems } from '../utilities/users-api';
 
 function Dashboard() {
   const [items, setItems] = useState([]);
@@ -14,7 +14,7 @@ function Dashboard() {
 
   const fetchItems = async () => {
     try {
-      const fetchedItems = await getListing();
+      const fetchedItems = await getItems();
       setItems(fetchedItems);
       calculateStatistics(fetchedItems);
     } catch (error) {
