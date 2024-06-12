@@ -6,7 +6,6 @@ import AuthPage from './pages/AuthPage';
 import Profile from './pages/Profile';
 import Dashboard from './pages/Dashboard';
 import MyProfile from './pages/Profile';
-import Search from './pages/Search';
 import CreateItem from './pages/CreateItem';
 import * as usersService from "./utilities/users-service";
 import {getUser} from "./utilities/users-service";
@@ -42,7 +41,6 @@ function App() {
               <Route path="/profile" element={<Profile user={user} />} />
               <Route path="/" element={<Dashboard />} />
               <Route path="/myprofile" element={<MyProfile user={user} />} />
-              <Route path="/search" element={<Search />} />
               <Route path="/create" element={<CreateItem />}/>
               <Route path="/view" element={<ViewItems />}/>
             </Routes>

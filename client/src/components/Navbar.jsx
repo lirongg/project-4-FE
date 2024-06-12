@@ -14,8 +14,6 @@ const Navbar = ({ user, setUser }) => {
         <br />
         <Link to="/myprofile">My Profile</Link>
         <br />
-        <Link to="/search">Search</Link>
-        <br />
         <Link to="/view">View Items</Link>
         <br />
 

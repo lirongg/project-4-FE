@@ -18,6 +18,15 @@ export function getUserListing(id){
     return sendRequest(`${BASE_URL}/items/${id}`)
 }
 
-export function getListing(id){
+export function getItems(id){
     return sendRequest(`${BASE_URL}/items/`)
 }
+
+export async function searchItems(query) {
+    const response = await fetch(`${BASE_URL}/items/search?query=${query}`);
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return response.json();
+}
+  
