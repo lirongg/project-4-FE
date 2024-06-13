@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import DisplayItems from '../components/DisplayItem';
-import { getItems } from '../utilities/users-api';
-import Search from '../components/SearchItem';
+import React, { useEffect, useState } from "react";
+import DisplayItems from "../components/DisplayItem";
+import { getItems } from "../utilities/users-api";
+import Search from "../components/SearchItem";
 
 function ViewItems() {
   const [items, setItems] = useState([]);
@@ -17,7 +17,7 @@ function ViewItems() {
     } catch (error) {
       console.error("Error fetching items:", error);
     }
-  }
+  };
 
   return (
     <div>
@@ -26,7 +26,12 @@ function ViewItems() {
       <ul>
         {items.map((item) => (
           <div key={item._id}>
-            <DisplayItems item={item} location={item.location} description={item.description} />
+            <DisplayItems
+              item={item}
+              location={item.location}
+              description={item.description}
+              image={item.image}
+            />
           </div>
         ))}
       </ul>

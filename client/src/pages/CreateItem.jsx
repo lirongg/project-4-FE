@@ -1,32 +1,55 @@
 import React, { useState } from "react";
-import { createItem } from "../utilities/users-api";
+import { createItem, imageUpload } from "../utilities/users-api";
 
 function CreateItem() {
   const [newItem, setNewItem] = useState({
     item: "",
     location: "",
     description: "",
+    image: [],
   });
+
+  const [imageFile, setImageFile] = useState(null);
 
   function handleChange(evt) {
     setNewItem({ ...newItem, [evt.target.name]: evt.target.value });
   }
 
-async function handleSubmit(evt) {
-  evt.preventDefault();
-  try {
-    await createItem(newItem);
-    alert("Item created!");
-    setNewItem({
-      item: "",
-      location: "",
-      description: "",
-    });
-  } catch (error) {
-    console.log(error);
+  function handleImageChange(evt) {
+    setImageFile(evt.target.files[0]);
   }
-}
 
+  async function handleSubmit(evt) {
+    evt.preventDefault();
+    if (imageFile) {
+      const formData = new FormData();
+      formData.append("image", imageFile);
+
+      try {
+        const imageData = await imageUpload(formData);
+        setNewItem({ ...newItem, imageURL: imageData.url });
+        console.log('Image uploaded successfully:', imageData.url);
+      } catch (error) {
+        console.error("Error uploading image:", error);
+        return;
+      }
+    }
+    try {
+      await createItem(newItem);
+      console.log('Item added successfully:', newItem);
+      alert("Item created!");
+      setNewItem({
+        item: "",
+        location: "",
+        description: "",
+        image: [],
+      });
+      setImageFile(null);
+    } catch (error) {
+      console.log('Error adding item:', error);
+      console.log(error);
+    }
+  }
 
   return (
     <div>
@@ -35,7 +58,7 @@ async function handleSubmit(evt) {
         <label>
           Item Name:
           <input
-          name="item"
+            name="item"
             type="text"
             value={newItem.item}
             onChange={handleChange}
@@ -45,7 +68,7 @@ async function handleSubmit(evt) {
         <label>
           Location:
           <select
-          name="location"
+            name="location"
             value={newItem.location}
             onChange={handleChange}
             required
@@ -60,11 +83,15 @@ async function handleSubmit(evt) {
         <label>
           Description:
           <textarea
-          name="description"
+            name="description"
             value={newItem.description}
             onChange={handleChange}
             required
           />
+        </label>
+        <label>
+          Upload Image:
+          <input type="file" onChange={handleImageChange} accept="image/*" />
         </label>
         <button type="submit">Add Item</button>
       </form>

@@ -1,4 +1,5 @@
 import sendRequest from "./send-request";
+import axios from "axios";
 
 const BASE_URL = 'http://localhost:3001'
 
@@ -30,3 +31,11 @@ export async function searchItems(query) {
     return response.json();
 }
   
+export async function imageUpload(formData) {
+    try {
+      const response = await axios.post(`${BASE_URL}/upload/image`, formData);
+      return response.data; // Return the response data from the server
+    } catch (error) {
+      throw new Error('Error uploading image: ' + error.message);
+    }
+  }

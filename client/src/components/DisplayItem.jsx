@@ -5,7 +5,8 @@ function DisplayItems(props) {
         <div>
         <p>{item.item}</p>
         <p>{item.location}</p>
-        <p>{item.description}</p></div>
+        <p>{item.description}</p>
+        <p>{item.image}</p></div>
     )
 }
 
