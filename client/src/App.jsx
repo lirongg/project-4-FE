@@ -7,12 +7,11 @@ import Profile from './pages/Profile';
 import Dashboard from './pages/Dashboard';
 import MyProfile from './pages/Profile';
 import CreateItem from './pages/CreateItem';
-import * as usersService from "./utilities/users-service";
 import {getUser} from "./utilities/users-service";
 import ViewItems from './pages/ViewItems';
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(getUser());
 
   useEffect(() => {
     const fetchUserData = async () => {
