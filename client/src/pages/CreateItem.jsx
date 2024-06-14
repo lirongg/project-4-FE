@@ -6,7 +6,7 @@ function CreateItem() {
     item: "",
     location: "",
     description: "",
-    image: [],
+    imageURL: "",
   });
 
   const [imageFile, setImageFile] = useState(null);
@@ -21,33 +21,36 @@ function CreateItem() {
 
   async function handleSubmit(evt) {
     evt.preventDefault();
+    let imageURL = "";
     if (imageFile) {
       const formData = new FormData();
       formData.append("image", imageFile);
 
       try {
         const imageData = await imageUpload(formData);
-        setNewItem({ ...newItem, imageURL: imageData.url });
-        console.log('Image uploaded successfully:', imageData.url);
+        imageURL = imageData.url;
+        console.log('Image uploaded successfully:', imageURL);
       } catch (error) {
         console.error("Error uploading image:", error);
         return;
       }
     }
+
     try {
-      await createItem(newItem);
-      console.log('Item added successfully:', newItem);
+      const newItemWithImage = { ...newItem, imageURL };
+      console.log('Item to be created:', newItemWithImage); // Debug log
+      await createItem(newItemWithImage);
+      console.log('Item added successfully:', newItemWithImage); // Debug log
       alert("Item created!");
       setNewItem({
         item: "",
         location: "",
         description: "",
-        image: [],
+        imageURL: "",
       });
       setImageFile(null);
     } catch (error) {
       console.log('Error adding item:', error);
-      console.log(error);
     }
   }
 
