@@ -1,13 +1,21 @@
-function DisplayItems(props) {
-    const {item} = props
+import React from 'react';
 
-    return(
-        <div>
-        <p>{item.item}</p>
-        <p>{item.location}</p>
-        <p>{item.description}</p>
-        <p>{item.image}</p></div>
-    )
+function DisplayItems({ item }) {
+  // Debugging log to check the item prop
+  console.log('Item prop in DisplayItems:', item);
+
+  return (
+    <div>
+      <p>{item.item}</p>
+      <p>{item.location}</p>
+      <p>{item.description}</p>
+      {item.images && item.images.length > 0 ? (
+        <img src={item.images[0]} alt={item.item} style={{ width: '200px', height: 'auto' }} />
+      ) : (
+        <p>No image available</p>
+      )}
+    </div>
+  );
 }
 
 export default DisplayItems;

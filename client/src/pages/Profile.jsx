@@ -17,6 +17,7 @@ function MyProfile(props) {
       }
       const userId = user._id;
       const data = await getUserListing(userId)
+      console.log('Fetched user items:', data);
       setUserItem(data);
     } catch (error) {
       console.error("Error fetching items", error);
