@@ -39,3 +39,15 @@ export function getItemsByLocation(location) {
 export function deleteItem(id) {
   return sendRequest(`${BASE_URL}/items/delete/${id}`, "DELETE");
 }
+
+export function getItemsById(itemid) {
+  return sendRequest(`${BASE_URL}/items/item/${itemid}`)
+    .then((response) => {
+      console.log("Response:", response);
+      return response;
+    })
+    .catch((error) => {
+      console.error("Error fetching items by itemid:", error);
+      throw error; 
+    });
+}
