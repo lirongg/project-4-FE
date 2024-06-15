@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {Link} from 'react-router-dom'
 import CalculateItems from '../components/CalculateItems';
 import { getItems } from '../utilities/users-api';
 
@@ -47,11 +48,22 @@ function Dashboard() {
 
   return (
     <div>
-      <h2>All Items</h2>
-
-      <CalculateItems itemStatistics={itemStatistics} />
+    <h2>All Items</h2>
+    <CalculateItems itemStatistics={itemStatistics} />
+    <div>
+      <Link to="/location/Living Room">Living Room ({itemStatistics.livingRoom})</Link>
     </div>
-  );
+    <div>
+      <Link to="/location/Bedroom">Bedroom ({itemStatistics.bedroom})</Link>
+    </div>
+    <div>
+      <Link to="/location/Kitchen">Kitchen ({itemStatistics.kitchen})</Link>
+    </div>
+    <div>
+      <Link to="/location/Garage">Garage ({itemStatistics.garage})</Link>
+    </div>
+  </div>
+);
 }
 
 export default Dashboard;

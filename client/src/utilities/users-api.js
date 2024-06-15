@@ -39,3 +39,16 @@ export async function imageUpload(formData) {
       throw new Error('Error uploading image: ' + error.message);
     }
   }
+
+  export function getItemsByLocation(location) {
+    return sendRequest(`${BASE_URL}/items/location/${location}`)
+      .then(response => {
+        // Assuming response is JSON data or handle response as needed
+        console.log('Response:', response);
+        return response;
+      })
+      .catch(error => {
+        console.error('Error fetching items by location:', error);
+        throw error; // Rethrow error to propagate it further if needed
+      });
+  }

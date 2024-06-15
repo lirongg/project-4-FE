@@ -1,8 +1,6 @@
 import React from 'react';
 
 function DisplayItems({ item }) {
-  // Debugging log to check the item prop
-  console.log('Item prop in DisplayItems:', item);
 
   return (
     <div>
