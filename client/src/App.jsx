@@ -8,10 +8,10 @@ import Dashboard from './pages/Dashboard';
 import MyProfile from './pages/Profile';
 import CreateItem from './pages/CreateItem';
 import EditItem from './pages/EditItem';
-import {getUser} from "./utilities/users-service";
+import { getUser } from './utilities/users-service';
 import ViewItems from './pages/ViewItems';
 import LocationItems from './components/LocationItems';
-
+import { NotificationProvider } from './components/NotificationContext'; // Import NotificationProvider
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -29,38 +29,31 @@ function App() {
     fetchUserData();
   }, []); 
 
-
   return (
-    <>
-      <div>
-        {user ? (
-          <Router>
-            <Navbar
-              user={user}
-              setUser={setUser}
-            />
+    <div>
+      {user ? (
+        <Router>
+          <Navbar user={user} setUser={setUser} />
+          <NotificationProvider> {/* Wrap NotificationProvider around the routes */}
             <Routes>
-              <Route path="/profile" element={<Profile user={user} />} />
+              <Route path="/profile" element={<Profile user={user} setUser={setUser} />} />
               <Route path="/" element={<Dashboard />} />
+              <Route path="/edit/:itemId" element={<EditItem />} />
               <Route path="/location/:location" element={<LocationItems />} />
-              <Route path="/myprofile" element={<MyProfile user={user} />} />
-              <Route path="/create" element={<CreateItem />}/>
-              <Route path="/edit/:itemId" element={<EditItem />}/>
-              <Route path="/view" element={<ViewItems />}/>
+              <Route path="/myprofile" element={<MyProfile user={user} setUser={setUser} />} />
+              <Route path="/create" element={<CreateItem />} />
+              <Route path="/view" element={<ViewItems />} />
             </Routes>
-          </Router>
-        ) : (
-          <Router>
-            <Routes>
-              <Route
-                path="/*"
-                element={<AuthPage setUser={setUser}/>}
-              />
-            </Routes>
-          </Router>
-        )}
-      </div>
-    </>
+          </NotificationProvider>
+        </Router>
+      ) : (
+        <Router>
+          <Routes>
+            <Route path="/*" element={<AuthPage setUser={setUser} />} />
+          </Routes>
+        </Router>
+      )}
+    </div>
   );
 }
 

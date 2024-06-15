@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { imageUpload } from '../utilities/items-api';
-import { updateItem } from '../utilities/users-api';
+import { useParams, useNavigate } from 'react-router-dom';
+import { imageUpload, updateItem } from '../utilities/users-api';
+import { useNotification } from '../components/NotificationContext';
+import { getItemsById } from '../utilities/items-api'; // Import getItemsById function
 
 const EditItem = () => {
-  const { itemId } = useParams(); // Extract itemId from URL params
+  const { itemId } = useParams();
+  const { addNotification } = useNotification(); // Access addNotification from context
 
   const [initialState, setInitialState] = useState({});
   const [itemName, setItemName] = useState('');
@@ -12,18 +14,20 @@ const EditItem = () => {
   const [description, setDescription] = useState('');
   const [imageFile, setImageFile] = useState(null);
   const [imageURL, setImageURL] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch item details using itemId (assuming you have an API to fetch item details by ID)
     const fetchItemDetails = async () => {
       try {
-        // Replace this with your API call to fetch item details
-        const response = await fetch(`/api/items/${itemId}`); // Example API endpoint
+        const response = await getItemsById(itemId);
+
         if (!response.ok) {
           throw new Error('Failed to fetch item');
         }
+
         const data = await response.json();
         const { item, location, description, imageURL } = data;
+
         setInitialState({ item, location, description, imageURL });
         setItemName(item || '');
         setLocation(location || '');
@@ -47,7 +51,7 @@ const EditItem = () => {
 
     const updatedItem = {};
 
-    if (itemName && itemName !== initialState.item) updatedItem.item = itemName;
+    if (itemName && itemName !== initialState.item) updatedItem.itemName = itemName;
     if (location && location !== initialState.location) updatedItem.location = location;
     if (description && description !== initialState.description) updatedItem.description = description;
 
@@ -65,7 +69,8 @@ const EditItem = () => {
         const response = await updateItem(itemId, updatedItem);
         console.log('Item updated successfully:', response);
 
-        // Handle success, e.g., navigate back to profile page
+        addNotification(`User updated description from '${initialState.description}' to '${description}'`); // Update notification message as per your requirement
+        navigate('/dashboard'); // Navigate back to dashboard or profile
       } else {
         console.log('No changes detected');
       }
