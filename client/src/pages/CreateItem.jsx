@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { createItem, imageUpload } from "../utilities/users-api";
+import { createItem } from "../utilities/users-api";
+import { imageUpload } from "../utilities/items-api";
 
 function CreateItem() {
   const [newItem, setNewItem] = useState({

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom'
 import CalculateItems from '../components/CalculateItems';
-import { getItems } from '../utilities/users-api';
+import { getItems } from '../utilities/items-api';
 
 function Dashboard() {
   const [items, setItems] = useState([]);
