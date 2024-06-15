@@ -1,61 +1,81 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { imageUpload } from '../utilities/items-api';
-import { updateItem} from '../utilities/users-api';
+import { updateItem } from '../utilities/users-api';
 
-const EditItem = ({ itemToEdit, onUpdateItem }) => {
+const EditItem = () => {
+  const { itemId } = useParams(); // Extract itemId from URL params
+
+  const [initialState, setInitialState] = useState({});
   const [itemName, setItemName] = useState('');
   const [location, setLocation] = useState('');
   const [description, setDescription] = useState('');
-  const [imageFile, setImageFile] = useState(null); // State to hold the selected image file
+  const [imageFile, setImageFile] = useState(null);
   const [imageURL, setImageURL] = useState('');
 
   useEffect(() => {
-    // Populate form fields with itemToEdit data when it changes
-    if (itemToEdit) {
-      setItemName(itemToEdit.item);
-      setLocation(itemToEdit.location);
-      setDescription(itemToEdit.description);
-      setImageURL(itemToEdit.imageURL || ''); // Ensure imageURL is initialized or empty string
-    }
-  }, [itemToEdit]);
+    // Fetch item details using itemId (assuming you have an API to fetch item details by ID)
+    const fetchItemDetails = async () => {
+      try {
+        // Replace this with your API call to fetch item details
+        const response = await fetch(`/api/items/${itemId}`); // Example API endpoint
+        if (!response.ok) {
+          throw new Error('Failed to fetch item');
+        }
+        const data = await response.json();
+        const { item, location, description, imageURL } = data;
+        setInitialState({ item, location, description, imageURL });
+        setItemName(item || '');
+        setLocation(location || '');
+        setDescription(description || '');
+        setImageURL(imageURL || '');
+      } catch (error) {
+        console.error('Error fetching item:', error);
+      }
+    };
+
+    fetchItemDetails();
+  }, [itemId]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Update item object
-    const updatedItem = {
-      item: itemName,
-      location,
-      description,
-      imageURL: imageURL // Use imageURL to display or store the URL of the uploaded image
-    };
+    if (!itemId) {
+      console.error('Item ID is missing');
+      return;
+    }
+
+    const updatedItem = {};
+
+    if (itemName && itemName !== initialState.item) updatedItem.item = itemName;
+    if (location && location !== initialState.location) updatedItem.location = location;
+    if (description && description !== initialState.description) updatedItem.description = description;
 
     try {
-      // Check if a new image file was selected
       if (imageFile) {
         const formData = new FormData();
         formData.append('image', imageFile);
 
-        // Upload image to Cloudinary and get the imageURL
         const imageData = await imageUpload(formData);
-        updatedItem.imageURL = imageData.url; // Update imageURL with the uploaded image URL
-        console.log('Image uploaded successfully:', updatedItem.imageURL);
+        updatedItem.imageURL = imageData.url;
+        console.log('Image uploaded successfully:', imageData.url);
       }
 
-      // Update item using updateItem function
-      const response = await updateItem(itemToEdit._id, updatedItem);
-      console.log('Item updated successfully:', response);
+      if (Object.keys(updatedItem).length > 0) {
+        const response = await updateItem(itemId, updatedItem);
+        console.log('Item updated successfully:', response);
 
-      onUpdateItem(response); // Pass the updated item data or handle response accordingly
-
+        // Handle success, e.g., navigate back to profile page
+      } else {
+        console.log('No changes detected');
+      }
     } catch (error) {
       console.error('Error updating item:', error);
-      // Handle error state or display error message to the user
     }
   };
 
   const handleImageChange = (evt) => {
-    setImageFile(evt.target.files[0]); // Update imageFile state with the selected file
+    setImageFile(evt.target.files[0]);
   };
 
   return (
@@ -68,7 +88,6 @@ const EditItem = ({ itemToEdit, onUpdateItem }) => {
             type="text"
             value={itemName}
             onChange={(e) => setItemName(e.target.value)}
-            required
           />
         </label>
         <label>
@@ -76,7 +95,6 @@ const EditItem = ({ itemToEdit, onUpdateItem }) => {
           <select
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            required
           >
             <option value="">Select Location</option>
             <option value="Living Room">Living Room</option>
@@ -90,7 +108,6 @@ const EditItem = ({ itemToEdit, onUpdateItem }) => {
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            required
           />
         </label>
         <label>

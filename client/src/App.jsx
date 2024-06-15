@@ -45,7 +45,7 @@ function App() {
               <Route path="/location/:location" element={<LocationItems />} />
               <Route path="/myprofile" element={<MyProfile user={user} />} />
               <Route path="/create" element={<CreateItem />}/>
-              <Route path="/edit/:id" element={<EditItem />}/>
+              <Route path="/edit/:itemId" element={<EditItem />}/>
               <Route path="/view" element={<ViewItems />}/>
             </Routes>
           </Router>
