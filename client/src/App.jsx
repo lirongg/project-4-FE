@@ -9,6 +9,8 @@ import MyProfile from './pages/Profile';
 import CreateItem from './pages/CreateItem';
 import {getUser} from "./utilities/users-service";
 import ViewItems from './pages/ViewItems';
+import LocationItems from './components/LocationItems';
+
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -39,6 +41,7 @@ function App() {
             <Routes>
               <Route path="/profile" element={<Profile user={user} />} />
               <Route path="/" element={<Dashboard />} />
+              <Route path="/location/:location" element={<LocationItems />} />
               <Route path="/myprofile" element={<MyProfile user={user} />} />
               <Route path="/create" element={<CreateItem />}/>
               <Route path="/view" element={<ViewItems />}/>
