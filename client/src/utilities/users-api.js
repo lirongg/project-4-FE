@@ -21,3 +21,7 @@ export function getUserListing(id) {
 export async function updateItem(id, userInput) {
   return sendRequest(`${BASE_URL}/items/update/${id}`, "PUT", userInput);
 }
+
+export function deleteUser(id) {
+  return sendRequest(`${BASE_URL}/users/delete/${id}`, "DELETE");
+}
