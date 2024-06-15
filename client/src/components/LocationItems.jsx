@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useParams} from 'react-router-dom';
 import DisplayItems from './DisplayItem';
-import { getItemsByLocation } from '../utilities/users-api';
+import { getItemsByLocation } from '../utilities/items-api';
 
 
 function LocationItems() {

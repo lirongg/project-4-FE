@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {Link} from "react-router-dom";
 import DisplayItems from '../components/DisplayItem';
 import { getUserListing } from '../utilities/users-api';
+import { deleteItem } from '../utilities/items-api';
 
 
 function MyProfile(props) {
@@ -27,6 +28,15 @@ function MyProfile(props) {
     fetchUserItems();
   },[user]);
 
+  async function handleDelete(id) {
+    try {
+      await deleteItem(id);
+      fetchUserItems();
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div>
       <h2>My Profile</h2>
@@ -40,7 +50,7 @@ function MyProfile(props) {
               <div key={item._id}>
                 <DisplayItems item={item} />
                 <button onClick={() => handleDelete(item._id)}>Delete</button>
-                <Link to={`/edit-listing/${item._id}`}>
+                <Link to={`/edit/${item._id}`}>
                   <button>Edit</button>
                 </Link>
               </div>

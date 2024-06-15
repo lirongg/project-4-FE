@@ -7,6 +7,7 @@ import Profile from './pages/Profile';
 import Dashboard from './pages/Dashboard';
 import MyProfile from './pages/Profile';
 import CreateItem from './pages/CreateItem';
+import EditItem from './pages/EditItem';
 import {getUser} from "./utilities/users-service";
 import ViewItems from './pages/ViewItems';
 import LocationItems from './components/LocationItems';
@@ -44,6 +45,7 @@ function App() {
               <Route path="/location/:location" element={<LocationItems />} />
               <Route path="/myprofile" element={<MyProfile user={user} />} />
               <Route path="/create" element={<CreateItem />}/>
+              <Route path="/edit/:id" element={<EditItem />}/>
               <Route path="/view" element={<ViewItems />}/>
             </Routes>
           </Router>

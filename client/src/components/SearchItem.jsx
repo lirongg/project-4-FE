@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { searchItems } from '../utilities/users-api';
+import { searchItems } from '../utilities/items-api';
 
 const Search = ({ setItems }) => {
   const [searchQuery, setSearchQuery] = useState('');

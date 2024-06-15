@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DisplayItems from "../components/DisplayItem";
-import { getItems } from "../utilities/users-api";
+import { getItems } from "../utilities/items-api";
 import Search from "../components/SearchItem";
 
 function ViewItems() {
