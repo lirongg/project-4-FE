@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import CalculateItems from '../components/CalculateItems';
-import { getItems } from '../utilities/items-api';
-import { useNotification } from '../components/NotificationContext';
-import Navbar from './Navbar';
+import CalculateItems from '../../components/CalculateItems';
+import { getItems } from '../../utilities/items-api';
+import { useNotification } from '../../components/NotificationContext';
+import Navbar from '../../components/Navbar/Navbar.jsx';
 
 function Dashboard({ user, setUser }) {
   const [items, setItems] = useState([]);
@@ -56,7 +56,6 @@ function Dashboard({ user, setUser }) {
 
   return (
     <div className="dashboard">
-      <Navbar user={user} setUser={setUser} />
       <div className="main-content">
         {notifications.length > 0 && (
           <div className="notifications">
