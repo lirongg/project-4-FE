@@ -1,16 +1,16 @@
 import React from 'react';
 
-function DisplayItems({ item }) {
 
+function DisplayItems({ item }) {
   return (
-    <div>
-      <p>{item.item}</p>
-      <p>{item.location}</p>
-      <p>{item.description}</p>
+    <div className="item-container">
+      <p className="item-name">{item.item}</p>
+      <p className="item-location">Location: {item.location}</p>
+      <p className="item-description">{item.description}</p>
       {item.images && item.images.length > 0 ? (
-        <img src={item.images[0]} alt={item.item} style={{ width: '200px', height: 'auto' }} />
+        <img src={item.images[0]} alt={item.item} className="item-image" />
       ) : (
-        <p>No image available</p>
+        <p className="no-image">No image available</p>
       )}
     </div>
   );

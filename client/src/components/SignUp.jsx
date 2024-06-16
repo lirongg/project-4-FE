@@ -25,6 +25,11 @@ function SignUp() {
 
   return (
     <div>
+    <div className="intro-container">
+      <h1>Storify</h1>
+      <p>Transforming How You Store</p>
+    </div>
+    <div className="form-container">
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <label>Name:</label>
@@ -53,6 +58,7 @@ function SignUp() {
         />
         <button type="submit">Sign Up</button>
       </form>
+    </div>
     </div>
   );
 }

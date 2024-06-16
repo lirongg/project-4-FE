@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import CalculateItems from '../components/CalculateItems';
 import { getItems } from '../utilities/items-api';
 import { useNotification } from '../components/NotificationContext';
+import Navbar from './Navbar';
 
-function Dashboard() {
+function Dashboard({ user, setUser }) {
   const [items, setItems] = useState([]);
   const [itemStatistics, setItemStatistics] = useState({
     total: 0,
@@ -54,30 +55,35 @@ function Dashboard() {
   };
 
   return (
-    <div>
-      <h2>All Items</h2>
-      {notifications.length > 0 && (
-        <div className="notifications">
-          {notifications.map((notification) => (
-            <div key={notification.id} className="notification">
-              <span>{notification.message}</span>
-              <button onClick={() => handleNotificationClose(notification.id)}>Close</button>
-            </div>
-          ))}
+    <div className="dashboard">
+      <Navbar user={user} setUser={setUser} />
+      <div className="main-content">
+        {notifications.length > 0 && (
+          <div className="notifications">
+            {notifications.map((notification) => (
+              <div key={notification.id} className="notification">
+                <span>{notification.message}</span>
+                <button onClick={() => handleNotificationClose(notification.id)}>Close</button>
+              </div>
+            ))}
+          </div>
+        )}
+        <CalculateItems itemStatistics={itemStatistics} />
+        <h2>Locations</h2>
+        <div className="locations">
+          <div className="location-box">
+            <Link to="/location/Living Room">Living Room ({itemStatistics.livingRoom})</Link>
+          </div>
+          <div className="location-box">
+            <Link to="/location/Bedroom">Bedroom ({itemStatistics.bedroom})</Link>
+          </div>
+          <div className="location-box">
+            <Link to="/location/Kitchen">Kitchen ({itemStatistics.kitchen})</Link>
+          </div>
+          <div className="location-box">
+            <Link to="/location/Garage">Garage ({itemStatistics.garage})</Link>
+          </div>
         </div>
-      )}
-      <CalculateItems itemStatistics={itemStatistics} />
-      <div>
-        <Link to="/location/Living Room">Living Room ({itemStatistics.livingRoom})</Link>
-      </div>
-      <div>
-        <Link to="/location/Bedroom">Bedroom ({itemStatistics.bedroom})</Link>
-      </div>
-      <div>
-        <Link to="/location/Kitchen">Kitchen ({itemStatistics.kitchen})</Link>
-      </div>
-      <div>
-        <Link to="/location/Garage">Garage ({itemStatistics.garage})</Link>
       </div>
     </div>
   );

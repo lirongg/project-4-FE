@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import * as usersService from "../utilities/users-service";
 
-function SignIn({setUser}) {
+
+function SignIn({ setUser }) {
   const [state, setState] = useState({
     email: "",
     password: "",
@@ -10,25 +11,29 @@ function SignIn({setUser}) {
   const [error, setError] = useState("");
 
   function handleChange(evt) {
-    setState({ ...state, [evt.target.name]: evt.target.value});
+    setState({ ...state, [evt.target.name]: evt.target.value });
     setError("");
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const user= await usersService.signIn(state);
-      console.log('SignIn successful:', user); 
+      const user = await usersService.signIn(state);
+      console.log('SignIn successful:', user);
       setUser(user);
     } catch (err) {
       console.error('SignIn failed:', err); // Debugging log
       setError("Log in failed");
-  
     }
   }
 
   return (
     <div>
+    <div className="intro-container">
+      <h1>Storify</h1>
+      <p>Transforming How You Store</p>
+    </div>
+    <div className="form-container">
       <h2>Sign In</h2>
       <form onSubmit={handleSubmit}>
         <label>Email:</label>
@@ -50,6 +55,7 @@ function SignIn({setUser}) {
         <button type="submit">Sign In</button>
       </form>
       <p className="error-message">{error}</p>
+    </div>
     </div>
   );
 };
