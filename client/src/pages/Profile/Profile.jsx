@@ -1,8 +1,10 @@
+// MyProfile.jsx
+
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import DisplayItems from '../../components/DisplayItem';
 import { getUserListing, deleteUser } from '../../utilities/users-api';
-import { deleteItem } from '../../utilities/items-api';
+import DeleteItemButton from '../../components/DeleteItemButton'; // Import the new component
 import "./Profile.css"
 
 function MyProfile({ user, setUser }) {
@@ -24,13 +26,8 @@ function MyProfile({ user, setUser }) {
     }
   };
 
-  const handleDeleteItem = async (id) => {
-    try {
-      await deleteItem(id);
-      setUserItems(userItems.filter(item => item._id !== id));
-    } catch (error) {
-      console.error('Error deleting item:', error);
-    }
+  const handleDeleteSuccess = (id) => {
+    setUserItems(userItems.filter(item => item._id !== id));
   };
 
   const handleDeleteUser = async () => {
@@ -52,16 +49,16 @@ function MyProfile({ user, setUser }) {
     <div>
       <h2>My Profile</h2>
       <p>Welcome, {user.name}!</p>
-      <Link to="/create">+ Create New Item</Link>
+      <Link to="/create">+ Add a Critter</Link>
       <div className="items-container">
         {userItems.length > 0 ? (
           userItems.map((item) => (
             <div key={item._id} className="box-container">
               <DisplayItems item={item} />
               <div className="item-actions">
-                <button onClick={() => handleDeleteItem(item._id)}>Delete</button>
+                <DeleteItemButton itemId={item._id} onDeleteSuccess={handleDeleteSuccess} />
                 <Link to={`/edit/${item._id}`}>
-                  <button>Edit</button>
+                  <button>Tweak Tails</button>
                 </Link>
               </div>
             </div>
@@ -74,4 +71,5 @@ function MyProfile({ user, setUser }) {
     </div>
   );
 }
+
 export default MyProfile;

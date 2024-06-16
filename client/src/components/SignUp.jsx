@@ -26,8 +26,8 @@ function SignUp() {
   return (
     <div>
     <div className="intro-container">
-      <h1>Storify</h1>
-      <p>Transforming How You Store</p>
+      <h1>ClutterCritter</h1>
+      <p>We Find the Stuff You Forget!</p>
     </div>
     <div className="form-container">
       <h2>Sign Up</h2>

@@ -1,14 +1,15 @@
+// ViewItems.jsx
+
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import DisplayItems from '../components/DisplayItem';
 import { getItems } from '../utilities/items-api';
 import Search from '../components/SearchItem';
-import { useNotification } from '../components/NotificationContext';
+import DeleteItemButton from '../components/DeleteItemButton'; // Import the new component
 
 function ViewItems() {
   const [items, setItems] = useState([]);
   const navigate = useNavigate();
-  const { notifications, removeNotification } = useNotification();
 
   useEffect(() => {
     fetchItems();
@@ -18,43 +19,30 @@ function ViewItems() {
     try {
       const fetchedItems = await getItems();
       setItems(fetchedItems);
+      console.log('Fetched items:', fetchedItems);
     } catch (error) {
       console.error('Error fetching items:', error);
     }
   };
 
-  const handleEdit = (itemId) => {
-    navigate(`/edit/${itemId}`);
+  const handleRelocateClick = (itemId) => {
+    navigate(`/relocate/${itemId}`); 
   };
 
-  const handleNotificationClose = (id) => {
-    removeNotification(id);
+  const handleDeleteSuccess = (id) => {
+    setItems(items.filter(item => item._id !== id));
   };
 
   return (
     <div>
       <h2>All Items</h2>
-      {notifications.length > 0 && (
-        <div className="notifications">
-          {notifications.map((notification) => (
-            <div key={notification.id} className="notification">
-              <span>{notification.message}</span>
-              <button onClick={() => handleNotificationClose(notification.id)}>Close</button>
-            </div>
-          ))}
-        </div>
-      )}
       <Search setItems={setItems} />
       <ul>
         {items.map((item) => (
           <div key={item._id}>
-            <DisplayItems
-              item={item}
-              location={item.location}
-              description={item.description}
-              image={item.image}
-            />
-            <button onClick={() => handleEdit(item._id)}>Edit</button>
+            <DisplayItems item={item} />
+            <button onClick={() => handleRelocateClick(item._id)}>Critter Relocation</button> 
+            <DeleteItemButton itemId={item._id} onDeleteSuccess={handleDeleteSuccess} />
           </div>
         ))}
       </ul>

@@ -40,7 +40,7 @@ export function deleteItem(id) {
   return sendRequest(`${BASE_URL}/items/delete/${id}`, "DELETE");
 }
 
-export function getItemsById(itemid) {
+export async function getItemById(itemid) {
   return sendRequest(`${BASE_URL}/items/item/${itemid}`)
     .then((response) => {
       console.log("Response:", response);
@@ -49,5 +49,14 @@ export function getItemsById(itemid) {
     .catch((error) => {
       console.error("Error fetching items by itemid:", error);
       throw error; 
+    });
+}
+
+export async function relocateItem(itemId, newLocation) {
+  return axios.put(`${BASE_URL}/items/item/relocate`, { itemId, newLocation })
+    .then(response => response.data)
+    .catch(error => {
+      console.error('Error relocating item:', error);
+      throw error;
     });
 }

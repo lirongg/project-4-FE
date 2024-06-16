@@ -3,8 +3,7 @@ import React from 'react';
 const CalculateItem = ({ itemStatistics }) => {
   return (
     <div>
-      <h2>Home Inventory Dashboard</h2>
-      <h3>Item Statistics</h3>
+      <h2>Item Statistics</h2>
       <ul>
         <li>Total Items: {itemStatistics.total}</li>
         <li>Items in Living Room: {itemStatistics.livingRoom}</li>
