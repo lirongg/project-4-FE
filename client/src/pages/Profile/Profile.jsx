@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import DisplayItems from '../components/DisplayItem';
-import { getUserListing, deleteUser } from '../utilities/users-api';
-import { deleteItem } from '../utilities/items-api';
+import DisplayItems from '../../components/DisplayItem';
+import { getUserListing, deleteUser } from '../../utilities/users-api';
+import { deleteItem } from '../../utilities/items-api';
 import "./Profile.css"
 
 function MyProfile({ user, setUser }) {
