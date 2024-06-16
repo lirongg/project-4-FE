@@ -12,6 +12,7 @@ import { getUser } from './utilities/users-service';
 import ViewItems from './pages/ViewItems';
 import LocationItems from './components/LocationItems';
 import { NotificationProvider } from './components/NotificationContext'; // Import NotificationProvider
+import RelocateItem from './pages/RelocateItem.jsx';
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -39,6 +40,7 @@ function App() {
               <Route path="/profile" element={<Profile user={user} setUser={setUser} />} />
               <Route path="/" element={<Dashboard />} />
               <Route path="/edit/:itemId" element={<EditItem />} />
+              <Route path="/relocate/:id" element={<RelocateItem />} />
               <Route path="/location/:location" element={<LocationItems />} />
               <Route path="/myprofile" element={<MyProfile user={user} setUser={setUser} />} />
               <Route path="/create" element={<CreateItem />} />

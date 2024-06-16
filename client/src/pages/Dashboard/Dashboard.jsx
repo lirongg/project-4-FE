@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import CalculateItems from '../../components/CalculateItems';
 import { getItems } from '../../utilities/items-api';
 import { useNotification } from '../../components/NotificationContext';
-import Navbar from '../../components/Navbar/Navbar.jsx';
+import "./Dashboard.css"
 
 function Dashboard({ user, setUser }) {
   const [items, setItems] = useState([]);
@@ -55,19 +55,11 @@ function Dashboard({ user, setUser }) {
   };
 
   return (
+    <div>
+    <div><h2>Home Dashboard</h2></div>
     <div className="dashboard">
-      <div className="main-content">
-        {notifications.length > 0 && (
-          <div className="notifications">
-            {notifications.map((notification) => (
-              <div key={notification.id} className="notification">
-                <span>{notification.message}</span>
-                <button onClick={() => handleNotificationClose(notification.id)}>Close</button>
-              </div>
-            ))}
-          </div>
-        )}
-        <CalculateItems itemStatistics={itemStatistics} />
+    
+      <div className="left-section">
         <h2>Locations</h2>
         <div className="locations">
           <div className="location-box">
@@ -84,6 +76,21 @@ function Dashboard({ user, setUser }) {
           </div>
         </div>
       </div>
+      <div className="right-section">
+        <h2>Notifications</h2>
+        {notifications.length > 0 && (
+          <div className="notifications">
+            {notifications.map((notification) => (
+              <div key={notification.id} className="notification">
+                <span>{notification.message}</span>
+                <button onClick={() => handleNotificationClose(notification.id)}>Close</button>
+              </div>
+            ))}
+          </div>
+        )}
+        <CalculateItems itemStatistics={itemStatistics} />
+      </div>
+    </div>
     </div>
   );
 }
