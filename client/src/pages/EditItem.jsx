@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { imageUpload, updateItem } from '../utilities/users-api';
+import { updateItem } from '../utilities/users-api';
 import { useNotification } from '../components/NotificationContext';
-import { getItemsById } from '../utilities/items-api'; // Import getItemsById function
+import { getItemsById,imageUpload } from '../utilities/items-api'; // Import getItemsById function
 
 const EditItem = () => {
   const { itemId } = useParams();

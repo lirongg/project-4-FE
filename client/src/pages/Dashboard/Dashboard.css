@@ -1,0 +1,75 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--tan-4);
+    padding: 2vmin;
+    height: 100vh;
+  }
+  
+  .dashboard {
+    display: flex;
+    gap: 2vmin;
+  }
+  
+  .left-section, .right-section {
+    flex: 1;
+    padding: 2vmin;
+    background-color: var(--tan-1);
+    border: 1px solid var(--tan-3);
+    border-radius: 1vmin;
+  }
+  
+  .left-section h2, .right-section h2 {
+    margin-top: 0;
+  }
+  
+  .locations {
+    display: flex;
+    flex-direction: column;
+    gap: 1vmin;
+  }
+  
+  .location-box {
+    padding: 2vmin;
+    background-color: var(--tan-2);
+    border: 1px solid var(--tan-3);
+    border-radius: 1vmin;
+    transition: background-color 0.3s;
+  }
+  
+  .location-box:hover {
+    background-color: var(--tan-3);
+  }
+  
+  .location-box a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 2vmin;
+  }
+  
+  .notifications {
+    margin-bottom: 2vmin;
+  }
+  
+  .notification {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1vmin;
+    background-color: var(--tan-2);
+    border: 1px solid var(--tan-3);
+    border-radius: 1vmin;
+    margin-bottom: 1vmin;
+  }
+  
+  .notification button {
+    background: none;
+    border: none;
+    color: var(--orange);
+    cursor: pointer;
+  }
+  

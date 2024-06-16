@@ -1,0 +1,63 @@
+.items-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust minmax values as needed */
+    gap: 20px;
+  }
+  
+  .box-container {
+    background-color: #FFFFFF;
+    border: 1px solid #D08856; /* Adjust border color */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Ensure container does not expand beyond specified width */
+  }
+  
+  .item-content {
+    padding: 10px;
+  }
+  
+  .item-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #41403c; /* Adjust text color */
+    margin-bottom: 5px;
+  }
+  
+  .item-description {
+    color: #615954; /* Adjust text color */
+    margin-bottom: 5px;
+  }
+  
+  .item-location {
+    font-style: italic;
+    color: #615954; /* Adjust text color */
+    margin-bottom: 5px;
+  }
+  
+  .item-image {
+    width: 100%;
+    height: auto;
+    max-width: 100%; /* Ensure images don't exceed container width */
+    border-radius: 8px;
+  }
+  
+  .item-actions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+  }
+  
+  .item-actions button {
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    background-color: #D08856; /* Adjust button color */
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .item-actions button:hover {
+    background-color: #AA210F; /* Adjust hover color */
+  }
+  

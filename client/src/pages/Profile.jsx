@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import DisplayItems from '../components/DisplayItem';
 import { getUserListing, deleteUser } from '../utilities/users-api';
 import { deleteItem } from '../utilities/items-api';
+import "./Profile.css"
 
 function MyProfile({ user, setUser }) {
   const navigate = useNavigate();
@@ -52,15 +53,17 @@ function MyProfile({ user, setUser }) {
       <h2>My Profile</h2>
       <p>Welcome, {user.name}!</p>
       <Link to="/create">+ Create New Item</Link>
-      <div>
+      <div className="items-container">
         {userItems.length > 0 ? (
           userItems.map((item) => (
-            <div key={item._id}>
+            <div key={item._id} className="box-container">
               <DisplayItems item={item} />
-              <button onClick={() => handleDeleteItem(item._id)}>Delete</button>
-              <Link to={`/edit/${item._id}`}>
-                <button>Edit</button>
-              </Link>
+              <div className="item-actions">
+                <button onClick={() => handleDeleteItem(item._id)}>Delete</button>
+                <Link to={`/edit/${item._id}`}>
+                  <button>Edit</button>
+                </Link>
+              </div>
             </div>
           ))
         ) : (
@@ -71,5 +74,4 @@ function MyProfile({ user, setUser }) {
     </div>
   );
 }
-
 export default MyProfile;
