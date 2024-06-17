@@ -4,10 +4,10 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import DisplayItems from '../../components/DisplayItem';
 import { getUserListing, deleteUser } from '../../utilities/users-api';
-import DeleteItemButton from '../../components/DeleteItemButton'; // Import the new component
-import "./Profile.css"
+import DeleteItemButton from '../../components/DeleteItemButton';
+import "./Profile.css";
 
-function MyProfile({ user, setUser }) {
+function MyProfile({ user, setUser }) { // Receive user and setUser as props
   const navigate = useNavigate();
   const [userItems, setUserItems] = useState([]);
 
@@ -35,10 +35,14 @@ function MyProfile({ user, setUser }) {
       await deleteUser(user._id);
       setUser(null);
       localStorage.removeItem('token');
-      navigate('/signup'); // Navigate to signup page after user deletion
+      navigate('/signup');
     } catch (error) {
       console.error('Error deleting user:', error);
     }
+  };
+
+  const handleEditProfile = () => {
+    navigate('/profile/edit');
   };
 
   if (!user) {
@@ -46,11 +50,17 @@ function MyProfile({ user, setUser }) {
   }
 
   return (
-    <div>
+    <div className="profile-page">
       <h2>My Profile</h2>
       <p>Welcome, {user.name}!</p>
-      <Link to="/create">+ Add a Critter</Link>
+
+      <button onClick={handleEditProfile} className="edit-profile-button">
+        Edit Profile
+      </button>
+
       <div className="items-container">
+        <h3>My Items</h3>
+        <Link to="/create">+ Add a Critter</Link>
         {userItems.length > 0 ? (
           userItems.map((item) => (
             <div key={item._id} className="box-container">
@@ -67,7 +77,10 @@ function MyProfile({ user, setUser }) {
           <p>No items found.</p>
         )}
       </div>
-      <button onClick={handleDeleteUser}>Delete User</button>
+
+      <button onClick={handleDeleteUser} className="delete-user-button">
+        Delete User
+      </button>
     </div>
   );
 }

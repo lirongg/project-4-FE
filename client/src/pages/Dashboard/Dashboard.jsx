@@ -1,8 +1,10 @@
+// Dashboard.jsx
+
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CalculateItems from '../../components/CalculateItems';
 import { getItems } from '../../utilities/items-api';
-import { useNotification } from '../../components/NotificationContext';
+import Locations from '../Locations';
 import "./Dashboard.css"
 
 function Dashboard({ user, setUser }) {
@@ -14,8 +16,6 @@ function Dashboard({ user, setUser }) {
     kitchen: 0,
     garage: 0,
   });
-
-  const { notifications, removeNotification } = useNotification();
 
   useEffect(() => {
     fetchItems();
@@ -50,47 +50,17 @@ function Dashboard({ user, setUser }) {
     setItemStatistics(stats);
   };
 
-  const handleNotificationClose = (id) => {
-    removeNotification(id);
-  };
-
   return (
     <div>
-    <div><h2>Home Dashboard</h2></div>
-    <div className="dashboard">
-    
-      <div className="left-section">
-        <h2>Locations</h2>
-        <div className="locations">
-          <div className="location-box">
-            <Link to="/location/Living Room">Living Room ({itemStatistics.livingRoom})</Link>
-          </div>
-          <div className="location-box">
-            <Link to="/location/Bedroom">Bedroom ({itemStatistics.bedroom})</Link>
-          </div>
-          <div className="location-box">
-            <Link to="/location/Kitchen">Kitchen ({itemStatistics.kitchen})</Link>
-          </div>
-          <div className="location-box">
-            <Link to="/location/Garage">Garage ({itemStatistics.garage})</Link>
-          </div>
+      <h2>Home Dashboard</h2>
+      <div className="dashboard">
+        <div className="left-section">
+          <Locations statistics={itemStatistics} /> {/* Use the new Locations component */}
+        </div>
+        <div className="right-section">
+          <CalculateItems itemStatistics={itemStatistics} />
         </div>
       </div>
-      <div className="right-section">
-        <h2>Notifications</h2>
-        {notifications.length > 0 && (
-          <div className="notifications">
-            {notifications.map((notification) => (
-              <div key={notification.id} className="notification">
-                <span>{notification.message}</span>
-                <button onClick={() => handleNotificationClose(notification.id)}>Close</button>
-              </div>
-            ))}
-          </div>
-        )}
-        <CalculateItems itemStatistics={itemStatistics} />
-      </div>
-    </div>
     </div>
   );
 }
