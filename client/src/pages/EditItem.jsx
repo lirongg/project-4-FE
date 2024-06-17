@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { updateItem } from '../utilities/users-api';
+import { getItemById, imageUpload ,getAllLocations } from '../utilities/items-api';
 import { useNotification } from '../components/NotificationContext';
-import { getItemById, imageUpload } from '../utilities/items-api';
 
 const EditItem = ({ user }) => {
   const { itemId } = useParams();
@@ -15,12 +15,13 @@ const EditItem = ({ user }) => {
   const [description, setDescription] = useState('');
   const [imageFile, setImageFile] = useState(null);
   const [imageURL, setImageURL] = useState('');
+  const [locations, setLocations] = useState([]); // State to hold all locations
 
+  // Fetch item details when the component mounts
   useEffect(() => {
     const fetchItemDetails = async () => {
       try {
         const item = await getItemById(itemId);
-        
         if (item) {
           const { item: fetchedItem, location, description, imageURL } = item;
           setInitialState({ item: fetchedItem, location, description, imageURL });
@@ -38,6 +39,32 @@ const EditItem = ({ user }) => {
 
     fetchItemDetails();
   }, [itemId]);
+
+  // Fetch locations from the backend
+  useEffect(() => {
+    const loadLocations = async () => {
+      try {
+        const fetchedLocations = await getAllLocations();
+        console.log('Fetched Locations:', fetchedLocations); // Log the fetched locations structure
+        
+        // Assuming fetchedLocations is an array of objects with a 'name' property
+        // If fetchedLocations is already an array of strings, just use setLocations(fetchedLocations)
+        setLocations(fetchedLocations.map(location => {
+          // Inspect the individual location objects
+          console.log('Location Object:', location);
+          return location.name || location; // Adjust based on the actual structure
+        }));
+      } catch (error) {
+        console.error('Error fetching locations:', error);
+      }
+    };
+
+    loadLocations();
+  }, []);
+
+  useEffect(() => {
+    console.log('Current Locations State:', locations); // Log the current state of locations
+  }, [locations]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -116,10 +143,11 @@ const EditItem = ({ user }) => {
             onChange={(e) => setLocation(e.target.value)}
           >
             <option value="">Select Location</option>
-            <option value="Living Room">Living Room</option>
-            <option value="Bedroom">Bedroom</option>
-            <option value="Kitchen">Kitchen</option>
-            <option value="Garage">Garage</option>
+            {locations.map((location, index) => (
+              <option key={index} value={location}>
+                {location}
+              </option>
+            ))}
           </select>
         </label>
         <label>
