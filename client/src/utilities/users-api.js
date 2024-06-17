@@ -1,4 +1,5 @@
 import sendRequest from "./send-request";
+import axios from "axios";
 
 const BASE_URL = "http://localhost:3001";
 
@@ -26,25 +27,24 @@ export function deleteUser(id) {
   return sendRequest(`${BASE_URL}/users/delete/${id}`, "DELETE");
 }
 
-// users-api.js
-
-export async function notifyUser(userId, message) {
+export async function updateUser(userData, isPasswordChange = false) {
   try {
-    const response = await fetch(`/api/notify/${userId}`, {
-      method: 'POST',
+    // Extract the user ID and construct the URL correctly
+    const userId = userData._id;
+    const url = `${BASE_URL}/users/${userId}`;
+    
+    const response = await axios.put(url, userData, {
       headers: {
         'Content-Type': 'application/json',
+        // Include authorization header if required
       },
-      body: JSON.stringify({ message }),
     });
-
-    if (!response.ok) {
-      throw new Error('Failed to send notification');
-    }
-
-    const data = await response.json();
-    return data;
+    return response.data;
   } catch (error) {
-    console.error('Error notifying user:', error);
+    console.error('Error updating user:', error);
+    throw error;
   }
 }
+
+
+

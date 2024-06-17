@@ -1,3 +1,5 @@
+// App.jsx
+
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -10,12 +12,13 @@ import CreateItem from './pages/CreateItem';
 import EditItem from './pages/EditItem.jsx';
 import { getUser } from './utilities/users-service';
 import ViewItems from './pages/ViewItems';
-import LocationItems from './components/LocationItems';
-import { NotificationProvider } from './components/NotificationContext'; // Import NotificationProvider
+import LocationPage from './components/LocationPage.jsx';
+import { NotificationProvider } from './components/NotificationContext';
 import RelocateItem from './pages/RelocateItem.jsx';
+import EditProfile from './pages/EditProfile.jsx';
 
 function App() {
-  const [user, setUser] = useState(getUser());
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -28,20 +31,21 @@ function App() {
     };
 
     fetchUserData();
-  }, []); 
+  }, []);
 
   return (
     <div>
       {user ? (
         <Router>
           <Navbar user={user} setUser={setUser} />
-          <NotificationProvider> {/* Wrap NotificationProvider around the routes */}
+          <NotificationProvider>
             <Routes>
               <Route path="/profile" element={<Profile user={user} setUser={setUser} />} />
+              <Route path="/profile/edit" element={<EditProfile user={user} setUser={setUser} />} />
               <Route path="/" element={<Dashboard />} />
               <Route path="/edit/:itemId" element={<EditItem />} />
               <Route path="/relocate/:id" element={<RelocateItem />} />
-              <Route path="/location/:location" element={<LocationItems />} />
+              <Route path="/location/:location" element={<LocationPage />} />
               <Route path="/myprofile" element={<MyProfile user={user} setUser={setUser} />} />
               <Route path="/create" element={<CreateItem />} />
               <Route path="/view" element={<ViewItems />} />
