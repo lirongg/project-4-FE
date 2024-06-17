@@ -4,10 +4,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { updateUser } from '../utilities/users-api';
 
-function EditProfile({ user, setUser }) {
+function EditProfile({ user, setUser }) { // Ensure user and setUser are received as props
   const navigate = useNavigate();
 
-  const [newName, setNewName] = useState(user.name || '');
+  const [newName, setNewName] = useState(user?.name || ''); // Use optional chaining to avoid errors
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [error, setError] = useState('');

@@ -1,37 +1,30 @@
-// Locations.jsx
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import './Locations.css'; // Import the CSS file for styling
 
-
-function Locations({ statistics }) {
+function Locations({ statistics, locations }) {
   return (
     <div className="locations">
       <h2>Locations</h2>
-      <div className="location-box">
-        <Link to="/location/Living Room">Living Room ({statistics.livingRoom})</Link>
-      </div>
-      <div className="location-box">
-        <Link to="/location/Bedroom">Bedroom ({statistics.bedroom})</Link>
-      </div>
-      <div className="location-box">
-        <Link to="/location/Kitchen">Kitchen ({statistics.kitchen})</Link>
-      </div>
-      <div className="location-box">
-        <Link to="/location/Garage">Garage ({statistics.garage})</Link>
+      <div className="location-boxes">
+        {locations.map((location, index) => (
+          <div key={index} className="location-item">
+            <Link to={`/location/${location}`} className="location-link">
+              <div className="location-box">
+                {location} ({statistics[location.toLowerCase().replace(/\s+/g, '')] || 0})
+              </div>
+            </Link>
+          </div>
+        ))}
       </div>
     </div>
   );
 }
 
 Locations.propTypes = {
-  statistics: PropTypes.shape({
-    livingRoom: PropTypes.number.isRequired,
-    bedroom: PropTypes.number.isRequired,
-    kitchen: PropTypes.number.isRequired,
-    garage: PropTypes.number.isRequired,
-  }).isRequired,
+  statistics: PropTypes.object.isRequired,
+  locations: PropTypes.array.isRequired,
 };
 
 export default Locations;

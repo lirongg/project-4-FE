@@ -1,0 +1,43 @@
+/* Locations.css */
+
+.locations {
+    padding: 20px;
+  }
+  
+  .location-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  .location-item {
+    flex: 1 1 150px; /* Grow and shrink, with a base width of 150px */
+  }
+  
+  .location-link {
+    text-decoration: none;
+  }
+  
+  .location-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  .location-box:hover {
+    background-color: #e0e0e0;
+    border-color: #aaa;
+  }
+  
+  .location-box:active {
+    background-color: #d0d0d0;
+    border-color: #888;
+  }
+  

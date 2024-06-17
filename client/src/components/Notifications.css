@@ -1,0 +1,57 @@
+/* Notifications.css */
+
+/* Styles for the notifications list */
+.notifications-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .notifications-section li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .notifications-section li.read span {
+    font-weight: normal;
+    color: grey;
+  }
+  
+  .notifications-section li span {
+    cursor: pointer;
+  }
+  
+  .notifications-section li button {
+    margin-left: 10px;
+  }
+  
+  /* Modal styles */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 500px;
+    width: 90%;
+  }
+  
+  .modal-content h4 {
+    margin-top: 0;
+  }
+  
+  .modal-content button {
+    margin-top: 10px;
+  }
+  

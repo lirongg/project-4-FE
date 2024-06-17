@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { updateItem } from '../utilities/users-api';
 import { useNotification } from '../components/NotificationContext';
-import { getItemById,imageUpload } from '../utilities/items-api'; // Import getItemsById function
+import { getItemById, imageUpload } from '../utilities/items-api';
 
-const EditItem = () => {
+const EditItem = ({ user }) => {
   const { itemId } = useParams();
-  const { addNotification } = useNotification(); // Access addNotification from context
+  const { addNotification } = useNotification();
+  const navigate = useNavigate();
 
   const [initialState, setInitialState] = useState({});
   const [itemName, setItemName] = useState('');
@@ -14,25 +15,22 @@ const EditItem = () => {
   const [description, setDescription] = useState('');
   const [imageFile, setImageFile] = useState(null);
   const [imageURL, setImageURL] = useState('');
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchItemDetails = async () => {
       try {
-        const response = await getItemsById(itemId);
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch item');
+        const item = await getItemById(itemId);
+        
+        if (item) {
+          const { item: fetchedItem, location, description, imageURL } = item;
+          setInitialState({ item: fetchedItem, location, description, imageURL });
+          setItemName(fetchedItem || '');
+          setLocation(location || '');
+          setDescription(description || '');
+          setImageURL(imageURL || '');
+        } else {
+          throw new Error('Item not found');
         }
-
-        const data = await response.json();
-        const { item, location, description, imageURL } = data;
-
-        setInitialState({ item, location, description, imageURL });
-        setItemName(item || '');
-        setLocation(location || '');
-        setDescription(description || '');
-        setImageURL(imageURL || '');
       } catch (error) {
         console.error('Error fetching item:', error);
       }
@@ -51,7 +49,7 @@ const EditItem = () => {
 
     const updatedItem = {};
 
-    if (itemName && itemName !== initialState.item) updatedItem.itemName = itemName;
+    if (itemName && itemName !== initialState.item) updatedItem.item = itemName;
     if (location && location !== initialState.location) updatedItem.location = location;
     if (description && description !== initialState.description) updatedItem.description = description;
 
@@ -69,8 +67,24 @@ const EditItem = () => {
         const response = await updateItem(itemId, updatedItem);
         console.log('Item updated successfully:', response);
 
-        addNotification(`User updated description from '${initialState.description}' to '${description}'`); // Update notification message as per your requirement
-        navigate('/dashboard'); // Navigate back to dashboard or profile
+        // Constructing the detailed notification message
+        let notificationMessage = `${user.name} updated item "${initialState.item}"`;
+
+        if (itemName && itemName !== initialState.item) {
+          notificationMessage += ` to "${itemName}"`;
+        }
+
+        if (location && location !== initialState.location) {
+          notificationMessage += `, from location "${initialState.location}" to "${location}"`;
+        }
+
+        if (description && description !== initialState.description) {
+          notificationMessage += `, with new description: '${description}'`;
+        }
+
+        addNotification(notificationMessage);
+
+        navigate('/'); // Navigate back to dashboard or profile
       } else {
         console.log('No changes detected');
       }
