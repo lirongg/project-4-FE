@@ -1,29 +1,39 @@
-import React, { createContext, useContext, useState } from 'react';
+// NotificationContext.jsx
+import React, { createContext, useState, useContext } from 'react';
 
 const NotificationContext = createContext();
 
-export const NotificationProvider = ({ children }) => {
+export function useNotification() {
+  return useContext(NotificationContext);
+}
+
+export function NotificationProvider({ children }) {
   const [notifications, setNotifications] = useState([]);
 
   const addNotification = (message) => {
     const newNotification = {
-      id: Math.random().toString(36).substr(2, 9), // Generate unique ID
+      id: Date.now(), // Unique ID for each notification
       message,
-      timestamp: Date.now(),
+      isRead: false, // Flag to track if the notification has been viewed
     };
-    setNotifications([...notifications, newNotification]);
+    setNotifications((prevNotifications) => [newNotification, ...prevNotifications]);
   };
 
   const removeNotification = (id) => {
-    const updatedNotifications = notifications.filter((notif) => notif.id !== id);
-    setNotifications(updatedNotifications);
+    setNotifications((prevNotifications) => prevNotifications.filter(n => n.id !== id));
+  };
+
+  const markAsRead = (id) => {
+    setNotifications((prevNotifications) =>
+      prevNotifications.map((n) =>
+        n.id === id ? { ...n, isRead: true } : n
+      )
+    );
   };
 
   return (
-    <NotificationContext.Provider value={{ notifications, addNotification, removeNotification }}>
+    <NotificationContext.Provider value={{ notifications, addNotification, removeNotification, markAsRead }}>
       {children}
     </NotificationContext.Provider>
   );
-};
-
-export const useNotification = () => useContext(NotificationContext);
+}

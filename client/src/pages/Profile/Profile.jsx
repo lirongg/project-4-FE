@@ -66,7 +66,7 @@ function MyProfile({ user, setUser }) { // Receive user and setUser as props
             <div key={item._id} className="box-container">
               <DisplayItems item={item} />
               <div className="item-actions">
-                <DeleteItemButton itemId={item._id} onDeleteSuccess={handleDeleteSuccess} />
+                <DeleteItemButton itemId={item._id} onDeleteSuccess={handleDeleteSuccess}  itemName={item.item} />
                 <Link to={`/edit/${item._id}`}>
                   <button>Tweak Tails</button>
                 </Link>

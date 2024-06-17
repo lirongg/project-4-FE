@@ -42,7 +42,7 @@ function ViewItems() {
           <div key={item._id}>
             <DisplayItems item={item} />
             <button onClick={() => handleRelocateClick(item._id)}>Critter Relocation</button> 
-            <DeleteItemButton itemId={item._id} onDeleteSuccess={handleDeleteSuccess} />
+            <DeleteItemButton itemId={item._id} onDeleteSuccess={handleDeleteSuccess}  itemName={item.item}/>
           </div>
         ))}
       </ul>

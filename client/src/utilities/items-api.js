@@ -24,6 +24,18 @@ export async function imageUpload(formData) {
   }
 }
 
+export function getAllLocations() {
+  return sendRequest(`${BASE_URL}/items/locations`)
+    .then((response) => {
+      console.log("Response:", response);
+      return response;
+    })
+    .catch((error) => {
+      console.error("Error fetching items by location:", error);
+      throw error; 
+    });
+}
+
 export function getItemsByLocation(location) {
   return sendRequest(`${BASE_URL}/items/location/${location}`)
     .then((response) => {

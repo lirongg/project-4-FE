@@ -3,10 +3,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getItemById, relocateItem } from '../utilities/items-api'; // Import necessary functions
+import { useNotification } from '../components/NotificationContext';
 
 function RelocateItem() {
   const { id } = useParams(); // Get the item ID from the route parameters
   const navigate = useNavigate();
+  const { addNotification } = useNotification();
   const [item, setItem] = useState(null);
   const [newLocation, setNewLocation] = useState('');
   const [error, setError] = useState(null);
@@ -31,6 +33,7 @@ function RelocateItem() {
     if (newLocation) {
       try {
         await relocateItem(id, newLocation);
+        addNotification(`Item "${item.item}" relocated to ${newLocation}`);
         navigate('/'); // Navigate back to the main items page after relocation
       } catch (error) {
         console.error('Relocation error:', error);
