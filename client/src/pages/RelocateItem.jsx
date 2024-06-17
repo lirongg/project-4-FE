@@ -1,24 +1,22 @@
-// RelocatePage.jsx
-
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getItemById, relocateItem } from '../utilities/items-api'; // Import necessary functions
+import { getItemById, relocateItem, getAllLocations } from '../utilities/items-api'; // Import necessary functions
 import { useNotification } from '../components/NotificationContext';
 
 function RelocateItem() {
-  const { id } = useParams(); // Get the item ID from the route parameters
+  const { id } = useParams();
   const navigate = useNavigate();
   const { addNotification } = useNotification();
   const [item, setItem] = useState(null);
   const [newLocation, setNewLocation] = useState('');
+  const [locations, setLocations] = useState([]); 
   const [error, setError] = useState(null);
-
-  const locationOptions = ["Living Room", "Bedroom", "Kitchen", "Garage", "Office"];
 
   useEffect(() => {
     const fetchItem = async () => {
       try {
         const fetchedItem = await getItemById(id);
+        console.log('Fetched Item:', fetchedItem); // Debugging log
         setItem(fetchedItem);
       } catch (error) {
         console.error('Error fetching item:', error);
@@ -28,6 +26,28 @@ function RelocateItem() {
 
     fetchItem();
   }, [id]);
+
+  useEffect(() => {
+    const loadLocations = async () => {
+      try {
+        const fetchedLocations = await getAllLocations();
+        console.log('Fetched Locations:', fetchedLocations); // Debugging log
+        setLocations(fetchedLocations.map(location => {
+          console.log('Location Object:', location); // Log each location object
+          return location.name || location; // Adjust based on structure
+        }));
+      } catch (error) {
+        console.error('Error fetching locations:', error);
+        setError('Failed to load locations.');
+      }
+    };
+
+    loadLocations();
+  }, []);
+
+  useEffect(() => {
+    console.log('Current Locations State:', locations); // Log the current state of locations
+  }, [locations]);
 
   const handleRelocate = async () => {
     if (newLocation) {
@@ -55,8 +75,8 @@ function RelocateItem() {
         onChange={(e) => setNewLocation(e.target.value)}
       >
         <option value="">Select New Location</option>
-        {locationOptions.map((location) => (
-          <option key={location} value={location}>
+        {locations.map((location, index) => (
+          <option key={index} value={location}>
             {location}
           </option>
         ))}

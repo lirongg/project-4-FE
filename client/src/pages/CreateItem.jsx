@@ -1,11 +1,9 @@
-// CreateItem.jsx
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createItem } from "../utilities/users-api";
-import { imageUpload } from "../utilities/items-api";
+import { imageUpload, getAllLocations } from "../utilities/items-api";
 import { useNotification } from '../components/NotificationContext';
 
-function CreateItem({ user }) { // Accept user as a prop
+function CreateItem({ user }) {
   const { addNotification } = useNotification();
   const [newItem, setNewItem] = useState({
     item: "",
@@ -15,13 +13,30 @@ function CreateItem({ user }) { // Accept user as a prop
   });
 
   const [imageFile, setImageFile] = useState(null);
-  const [locations, setLocations] = useState([
-    "Living Room",
-    "Bedroom",
-    "Kitchen",
-    "Garage",
-  ]); // Initial set of locations
-  const [newLocation, setNewLocation] = useState(""); // State to hold new location input
+  const [locations, setLocations] = useState([]);
+  const [newLocation, setNewLocation] = useState("");
+
+  // Fetch locations when the component mounts
+  useEffect(() => {
+    const loadLocations = async () => {
+      try {
+        const fetchedLocations = await getAllLocations();
+        console.log('Fetched Locations:', fetchedLocations); // Debugging log
+        setLocations(fetchedLocations.map(location => {
+          console.log('Location Object:', location); // Log each location object
+          return location.name || location; // Adjust based on structure
+        }));
+      } catch (error) {
+        console.error("Error fetching locations:", error);
+      }
+    };
+
+    loadLocations();
+  }, []);
+
+  useEffect(() => {
+    console.log('Current Locations State:', locations); // Log the current state of locations
+  }, [locations]);
 
   function handleChange(evt) {
     setNewItem({ ...newItem, [evt.target.name]: evt.target.value });
@@ -35,10 +50,14 @@ function CreateItem({ user }) { // Accept user as a prop
     setNewLocation(evt.target.value);
   }
 
-  function handleAddNewLocation() {
+  async function handleAddNewLocation() {
     if (newLocation && !locations.includes(newLocation)) {
-      setLocations([...locations, newLocation]);
-      setNewLocation(""); // Clear the input field after adding
+      try {
+        setLocations([...locations, newLocation]);
+        setNewLocation(""); // Clear the input field after adding
+      } catch (error) {
+        console.error("Error adding new location:", error);
+      }
     }
   }
 

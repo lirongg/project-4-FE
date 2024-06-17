@@ -1,47 +1,54 @@
-/* General styles */
-body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background-color: #EDEFEE; /* Adjust as needed */
-  }
-  
-  /* Navbar styles */
-  .navbar {
-    background-color: #D08856; /* Adjust as needed */
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #41403c; /* Adjust text color */
-  }
-  
-  .logo {
-    font-size: 2rem;
-    color: #41403c; /* Adjust logo color */
-  }
-  
-  .nav-links {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .nav-links a {
-    text-decoration: none;
-    color: #41403c; /* Adjust link color */
-    font-size: 18px; /* Adjust font size */
-  }
-  
-  .nav-links a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Main content styles */
-  .main-content {
-    padding: 20px;
-  }
-  
+/* Navbar.css */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+}
+
+.logo {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+.nav-links a:hover {
+  background-color: #555;
+}
+
+.search-bar {
+  flex-grow: 1; /* Allow the search bar to take up available space */
+  margin-left: 20px; /* Add some space between the links and the search bar */
+}
+
+.search-bar form {
+  display: flex;
+  gap: 5px;
+}
+
+.search-bar input {
+  flex-grow: 1;
+  padding: 5px;
+}
+
+.search-bar button {
+  padding: 5px 10px;
+}
+
+.sign-out {
+  margin-left: auto; /* Push the sign-out button to the far right */
+}
