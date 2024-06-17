@@ -6,13 +6,13 @@ import './Locations.css'; // Import the CSS file for styling
 function Locations({ statistics, locations }) {
   return (
     <div className="locations">
-      <h2>Locations</h2>
+
       <div className="location-boxes">
         {locations.map((location, index) => (
           <div key={index} className="location-item">
             <Link to={`/location/${location}`} className="location-link">
               <div className="location-box">
-                {location} ({statistics[location.toLowerCase().replace(/\s+/g, '')] || 0})
+              📍{location} ({statistics[location.toLowerCase().replace(/\s+/g, '')] || 0})
               </div>
             </Link>
           </div>

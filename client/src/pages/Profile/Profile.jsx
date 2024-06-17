@@ -1,5 +1,3 @@
-// MyProfile.jsx
-
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import DisplayItems from '../../components/DisplayItem';
@@ -54,13 +52,17 @@ function MyProfile({ user, setUser }) { // Receive user and setUser as props
       <h2>My Profile</h2>
       <p>Welcome, {user.name}!</p>
 
-      <button onClick={handleEditProfile} className="edit-profile-button">
-        Edit Profile
-      </button>
+      <div className="button-group">
+        <button onClick={handleEditProfile} className="edit-profile-button">
+          Edit Profile
+        </button>
+        <button onClick={handleDeleteUser} className="delete-user-button">
+          Delete User
+        </button>
+      </div>
 
       <div className="items-container">
         <h3>My Items</h3>
-        <Link to="/create">+ Add a Critter</Link>
         {userItems.length > 0 ? (
           userItems.map((item) => (
             <div key={item._id} className="box-container">
@@ -77,10 +79,6 @@ function MyProfile({ user, setUser }) { // Receive user and setUser as props
           <p>No items found.</p>
         )}
       </div>
-
-      <button onClick={handleDeleteUser} className="delete-user-button">
-        Delete User
-      </button>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { getItemsByLocation } from '../utilities/items-api';
 import DisplayItems from '../components/DisplayItem';
 import DeleteItemButton from '../components/DeleteItemButton';
 import axios from "axios";
-
+import './LocationPage.css'; // Import the CSS file for styling
 
 const BASE_URL = "http://localhost:3001"; // Ensure this points to your backend server
 
@@ -73,17 +73,21 @@ function LocationPage() {
   return (
     <div className="location-page">
       <h2>{location} Items</h2>
-      <div className="upload-section">
-        <input type="file" onChange={handleImageChange} accept="image/*" />
-        <button onClick={handleImageUpload} disabled={uploading || !imageFile}>
+      <div
+        className="upload-section"
+        style={{ backgroundImage: imageURL ? `url(${imageURL})` : 'none' }}
+      >
+        <input type="file" id="file-upload" onChange={handleImageChange} accept="image/*" />
+        <label htmlFor="file-upload" className="upload-label">
+          Choose File
+        </label>
+        <button 
+          className="upload-button" 
+          onClick={handleImageUpload} 
+          disabled={uploading || !imageFile}
+        >
           {uploading ? 'Uploading...' : 'Upload Background Image'}
         </button>
-        {imageURL && (
-          <div className="uploaded-image">
-            <p>Background Image:</p>
-            <img src={imageURL} alt={`${location} Background`} style={{ maxWidth: '200px' }} />
-          </div>
-        )}
       </div>
 
       <div className="items-list">

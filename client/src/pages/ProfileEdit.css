@@ -1,0 +1,125 @@
+/* General Styles for Edit Profile Page */
+.edit-profile-page {
+    padding: 20px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* Reduced gap between sections */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+h2 {
+    color: #333;
+    font-size: 1.8em; /* Slightly smaller font size */
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.profile-section, .password-section {
+    background-color: #fff;
+    padding: 15px; /* Reduced padding */
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Reduced gap between internal elements */
+    margin-bottom: 15px; /* Reduced margin between sections */
+}
+
+.profile-section h3, .password-section h3 {
+    color: #333;
+    font-size: 1.3em; /* Slightly smaller font size */
+    margin-bottom: 5px; /* Reduced margin */
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.95em; /* Slightly smaller font size */
+    color: #555;
+    margin-bottom: 8px; /* Reduced margin */
+}
+
+input {
+    padding: 8px; /* Reduced padding */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 0.95em; /* Slightly smaller font size */
+    transition: border-color 0.3s;
+    box-sizing: border-box; /* Ensure padding is included in the total width */
+}
+
+input:focus {
+    border-color: #0066cc;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px; /* Reduced padding */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    align-self: center;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.cancel-button {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.cancel-button:hover {
+    background-color: #5a6268;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .edit-profile-page {
+        padding: 10px;
+    }
+
+    .profile-section, .password-section {
+        padding: 10px; /* Further reduced padding for small screens */
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    .profile-section h3, .password-section h3 {
+        font-size: 1.2em;
+    }
+
+    label {
+        font-size: 0.9em;
+    }
+
+    input {
+        padding: 6px; /* Further reduced padding for small screens */
+        font-size: 0.9em;
+    }
+
+    button {
+        padding: 6px 10px; /* Further reduced padding for small screens */
+        font-size: 0.9em;
+    }
+}

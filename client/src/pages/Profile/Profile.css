@@ -1,63 +1,137 @@
+/* General Styles for Profile Page */
+.profile-page {
+  padding: 20px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #333;
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #555;
+  font-size: 1.2em;
+}
+
+/* Button Group */
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.button-group button {
+  background-color: #0066cc;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button-group button:hover {
+  background-color: #004999;
+}
+
+/* Edit Profile and Delete User Button Specific Styles */
+.edit-profile-button {
+  background-color: #007bff;
+}
+
+.delete-user-button {
+  background-color: #dc3545;
+}
+
+.delete-user-button:hover {
+  background-color: #c82333;
+}
+
+/* Items Container */
 .items-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust minmax values as needed */
-    gap: 20px;
+  width: 100%;
+  max-width: 800px;
+  margin-top: 20px;
+}
+
+.items-container h3 {
+  color: #333;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.box-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.item-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.item-actions button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.item-actions button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-page {
+      padding: 10px;
   }
-  
+
+  .items-container {
+      width: 100%;
+  }
+
   .box-container {
-    background-color: #FFFFFF;
-    border: 1px solid #D08856; /* Adjust border color */
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* Ensure container does not expand beyond specified width */
+      padding: 15px;
   }
-  
-  .item-content {
-    padding: 10px;
+
+  .button-group {
+      flex-direction: column;
+      gap: 10px;
   }
-  
-  .item-name {
-    font-size: 16px;
-    font-weight: bold;
-    color: #41403c; /* Adjust text color */
-    margin-bottom: 5px;
+
+  .edit-profile-button, .delete-user-button {
+      width: 100%;
+      padding: 15px;
   }
-  
-  .item-description {
-    color: #615954; /* Adjust text color */
-    margin-bottom: 5px;
-  }
-  
-  .item-location {
-    font-style: italic;
-    color: #615954; /* Adjust text color */
-    margin-bottom: 5px;
-  }
-  
-  .item-image {
-    width: 100%;
-    height: auto;
-    max-width: 100%; /* Ensure images don't exceed container width */
-    border-radius: 8px;
-  }
-  
+
   .item-actions {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 10px;
+      flex-direction: column;
+      gap: 10px;
   }
-  
+
   .item-actions button {
-    padding: 8px 16px;
-    font-size: 14px;
-    border: none;
-    background-color: #D08856; /* Adjust button color */
-    color: white;
-    cursor: pointer;
-    border-radius: 4px;
+      width: 100%;
   }
-  
-  .item-actions button:hover {
-    background-color: #AA210F; /* Adjust hover color */
-  }
-  
+}

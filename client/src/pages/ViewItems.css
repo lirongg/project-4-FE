@@ -1,0 +1,103 @@
+/* General Styles for View Items Page */
+.view-items-page {
+    padding: 20px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 1200px; /* Adjusted max width to fit 4 items comfortably */
+    margin: 0 auto;
+}
+
+h2 {
+    color: #333;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.search-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* Grid Layout for Items */
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Four items per row */
+    gap: 20px; /* Space between items */
+    width: 100%;
+    padding: 0;
+    list-style-type: none;
+}
+
+.item-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    text-align: center;
+}
+
+.item-container button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 150px;
+    margin-top: 5px;
+}
+
+.item-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .items-grid {
+        grid-template-columns: repeat(3, 1fr); /* Three items per row on medium screens */
+    }
+}
+
+@media (max-width: 900px) {
+    .items-grid {
+        grid-template-columns: repeat(2, 1fr); /* Two items per row on small screens */
+    }
+}
+
+@media (max-width: 600px) {
+    .view-items-page {
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    .items-grid {
+        grid-template-columns: 1fr; /* One item per row on extra small screens */
+    }
+
+    .item-container {
+        padding: 15px;
+    }
+
+    .item-container button {
+        width: 100%;
+        padding: 8px 10px;
+        font-size: 0.9em;
+    }
+}

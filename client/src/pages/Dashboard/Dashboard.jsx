@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getItems, getAllLocations } from '../../utilities/items-api';
 import Locations from '../Locations';
-import CalculateItem from '../../components/CalculateItems'; // Correct import name
+import CalculateItem from '../../components/CalculateItems';
 import Notifications from '../../components/Notifications';
 import { useNotification } from '../../components/NotificationContext';
 import './Dashboard.css';
@@ -9,12 +9,12 @@ import './Dashboard.css';
 function Dashboard({ user, setUser }) {
   const { notifications } = useNotification(); 
   const [items, setItems] = useState([]);
-  const [locations, setLocations] = useState([]); // State for locations
+  const [locations, setLocations] = useState([]);
   const [itemStatistics, setItemStatistics] = useState({ total: 0 });
 
   useEffect(() => {
     fetchItems();
-    fetchLocations(); // Fetch unique locations
+    fetchLocations();
   }, []);
 
   const fetchItems = async () => {
@@ -30,7 +30,7 @@ function Dashboard({ user, setUser }) {
   const fetchLocations = async () => {
     try {
       const fetchedLocations = await getAllLocations();
-      setLocations(fetchedLocations); // Set locations state with the fetched locations
+      setLocations(fetchedLocations);
     } catch (error) {
       console.error("Error fetching locations:", error);
     }
@@ -55,12 +55,18 @@ function Dashboard({ user, setUser }) {
       <h2>Home Dashboard</h2>
       <div className="dashboard">
         <div className="left-section">
-          <Locations statistics={itemStatistics} locations={locations} /> {/* Pass locations to the Locations component */}
+        <h2>📍Locations</h2>
+          <Locations statistics={itemStatistics} locations={locations} />
         </div>
         <div className="right-section">
-          <h2>Notifications ({notifications.length})</h2> 
-          <Notifications /> 
-          <CalculateItem itemStatistics={itemStatistics} /> {/* Corrected component name */}
+          <div className="notifications-container">
+            <h2>Notifications ({notifications.length})</h2>
+            <Notifications />
+          </div>
+          <div className="item-statistics-container">
+          <h2>Item Statistics</h2>
+            <CalculateItem itemStatistics={itemStatistics} />
+          </div>
         </div>
       </div>
     </div>

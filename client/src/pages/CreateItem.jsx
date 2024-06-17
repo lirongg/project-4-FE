@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { createItem } from "../utilities/users-api";
 import { imageUpload, getAllLocations } from "../utilities/items-api";
 import { useNotification } from '../components/NotificationContext';
+import './FormStyles.css'; // Import the CSS file for styling
 
 function CreateItem({ user }) {
   const { addNotification } = useNotification();
@@ -21,11 +22,7 @@ function CreateItem({ user }) {
     const loadLocations = async () => {
       try {
         const fetchedLocations = await getAllLocations();
-        console.log('Fetched Locations:', fetchedLocations); // Debugging log
-        setLocations(fetchedLocations.map(location => {
-          console.log('Location Object:', location); // Log each location object
-          return location.name || location; // Adjust based on structure
-        }));
+        setLocations(fetchedLocations.map(location => location.name || location));
       } catch (error) {
         console.error("Error fetching locations:", error);
       }
@@ -33,10 +30,6 @@ function CreateItem({ user }) {
 
     loadLocations();
   }, []);
-
-  useEffect(() => {
-    console.log('Current Locations State:', locations); // Log the current state of locations
-  }, [locations]);
 
   function handleChange(evt) {
     setNewItem({ ...newItem, [evt.target.name]: evt.target.value });
@@ -52,12 +45,8 @@ function CreateItem({ user }) {
 
   async function handleAddNewLocation() {
     if (newLocation && !locations.includes(newLocation)) {
-      try {
-        setLocations([...locations, newLocation]);
-        setNewLocation(""); // Clear the input field after adding
-      } catch (error) {
-        console.error("Error adding new location:", error);
-      }
+      setLocations([...locations, newLocation]);
+      setNewLocation(""); // Clear the input field after adding
     }
   }
 
@@ -71,7 +60,6 @@ function CreateItem({ user }) {
       try {
         const imageData = await imageUpload(formData);
         imageURL = imageData.url;
-        console.log('Image uploaded successfully:', imageURL);
       } catch (error) {
         console.error("Error uploading image:", error);
         return;
@@ -80,13 +68,11 @@ function CreateItem({ user }) {
 
     try {
       const newItemWithImage = { ...newItem, imageURL };
-      console.log('Item to be created:', newItemWithImage); // Debug log
       const createdItem = await createItem(newItemWithImage);
       addNotification(
         `${user.name} created item "${createdItem.item}" in "${createdItem.location}"`,
         'item-created'
       );
-      console.log('Item added successfully:', newItemWithImage); // Debug log
       alert("Item created!");
       setNewItem({
         item: "",
@@ -101,7 +87,7 @@ function CreateItem({ user }) {
   }
 
   return (
-    <div>
+    <div className="form-page">
       <h2>Add New Item</h2>
       <form onSubmit={handleSubmit}>
         <label>

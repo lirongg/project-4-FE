@@ -1,16 +1,35 @@
+/* General Styles for AuthPage */
 .AuthPage {
-    height: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    background-color: #f7f7f7; 
-    border-radius: 2vmin;
-  }
-  
-  .AuthPage h3 {
-    margin-top: 4vmin;
-    text-align: center;
-    color: var(--text-light);
-    cursor: pointer;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f9;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.auth-container {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 80%; /* Increase the width to make it wider */
+  max-width: 600px; /* Set a max-width to prevent it from becoming too wide on larger screens */
+  margin: 0 auto; /* Center the container */
+}
+
+.toggle-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #0066cc;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-button:hover {
+  background-color: #004999;
+}

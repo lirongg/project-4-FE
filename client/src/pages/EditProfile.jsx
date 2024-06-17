@@ -1,8 +1,7 @@
-// EditProfile.jsx
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { updateUser } from '../utilities/users-api';
+import './ProfileEdit.css'; // Import the CSS file for styling
 
 function EditProfile({ user, setUser }) { // Ensure user and setUser are received as props
   const navigate = useNavigate();

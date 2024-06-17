@@ -1,15 +1,15 @@
-/* Navbar.css */
-
+/* General Styles for Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
   background-color: #333;
-  color: #fff;
+  padding: 10px 20px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
 .logo {
+  color: #fff;
   font-size: 1.2em;
   font-weight: bold;
 }
@@ -22,33 +22,51 @@
 .nav-links a {
   color: #fff;
   text-decoration: none;
-  padding: 5px 10px;
-  border-radius: 3px;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .nav-links a:hover {
-  background-color: #555;
+  background-color: #444;
+  color: #fff;
 }
 
 .search-bar {
-  flex-grow: 1; /* Allow the search bar to take up available space */
-  margin-left: 20px; /* Add some space between the links and the search bar */
-}
-
-.search-bar form {
+  flex: 1;
   display: flex;
-  gap: 5px;
+  justify-content: center;
+  padding: 0 20px;
 }
 
 .search-bar input {
-  flex-grow: 1;
-  padding: 5px;
+  width: 100%;
+  max-width: 300px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s ease;
 }
 
-.search-bar button {
-  padding: 5px 10px;
+.search-bar input:focus {
+  border-color: #0066cc;
 }
 
 .sign-out {
-  margin-left: auto; /* Push the sign-out button to the far right */
+  color: #fff;
+  cursor: pointer;
+}
+
+.sign-out button {
+  background-color: #0066cc;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sign-out button:hover {
+  background-color: #004999;
 }

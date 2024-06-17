@@ -7,7 +7,7 @@ function AuthPage({ setUser }) {
   const [choice, setChoice] = useState(false);
   return (
     <main className ="AuthPage">
-      <div>
+      <div className ="auth-container">
         {choice ? <SignIn setUser={setUser} /> : <SignUp setUser={setUser} />}
         <button onClick={() => setChoice(!choice)}>
           {choice ? "Sign Up Here" : "Sign In Here"}

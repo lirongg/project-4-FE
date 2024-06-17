@@ -1,0 +1,123 @@
+/* General Form Styles */
+.form-page {
+    padding: 20px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+h2 {
+    color: #333;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 10px; /* Space between labels and inputs */
+    width: 100%;
+}
+
+input[type="text"], input[type="password"], input[type="file"], select, textarea {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    transition: border-color 0.3s;
+    margin-top: 5px; /* Space between input and label */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #0066cc;
+}
+
+textarea {
+    resize: vertical; /* Allow vertical resize only */
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    align-self: center;
+    margin-top: 15px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button[type="button"] {
+    background-color: #6c757d;
+    margin-top: 10px;
+}
+
+button[type="button"]:hover {
+    background-color: #5a6268;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.add-location {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.add-location input {
+    flex: 1;
+    padding: 10px;
+    font-size: 1em;
+}
+
+.add-location button {
+    padding: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .form-page {
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    label {
+        font-size: 0.9em;
+    }
+
+    input, select, textarea {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+
+    button {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+}

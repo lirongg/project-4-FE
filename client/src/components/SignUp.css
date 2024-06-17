@@ -1,0 +1,56 @@
+/* General Styles for SignUp */
+.intro-container {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.intro-container h1 {
+    font-size: 2em;
+    color: #333;
+}
+
+.intro-container p {
+    font-size: 1.2em;
+    color: #666;
+}
+
+.form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.form-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.form-container label {
+    display: block;
+    margin: 10px 0 5px;
+    color: #333;
+}
+
+.form-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0066cc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-container button:hover {
+    background-color: #004999;
+}

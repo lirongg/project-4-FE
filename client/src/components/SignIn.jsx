@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import * as usersService from "../utilities/users-service";
-
+import './SignIn.css';
 
 function SignIn({ setUser }) {
   const [state, setState] = useState({
@@ -22,40 +22,42 @@ function SignIn({ setUser }) {
       console.log('SignIn successful:', user);
       setUser(user);
     } catch (err) {
-      console.error('SignIn failed:', err); // Debugging log
+      console.error('SignIn failed:', err);
       setError("Log in failed");
     }
   }
 
   return (
     <div>
-    <div className="intro-container">
-      <h1>ClutterCritter</h1>
-      <p>We Find the Stuff You Forget!</p>
-    </div>
-    <div className="form-container">
-      <h2>Sign In</h2>
-      <form onSubmit={handleSubmit}>
-        <label>Email:</label>
-        <input
-          name="email"
-          type="email"
-          value={state.email}
-          onChange={handleChange}
-          required
-        />
-        <label>Password:</label>
-        <input
-          name="password"
-          type="password"
-          value={state.password}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit">Sign In</button>
-      </form>
-      <p className="error-message">{error}</p>
-    </div>
+      <div className="intro-container">
+        <h1>ClutterCritter</h1>
+        <p>We Find the Stuff You Forget!</p>
+      </div>
+      <div className="form-container">
+        <h2>Sign In</h2>
+        <form onSubmit={handleSubmit}>
+          <label>Email:</label>
+          <input
+            name="email"
+            type="email"
+            value={state.email}
+            onChange={handleChange}
+            required
+            className="input-field"
+          />
+          <label>Password:</label>
+          <input
+            name="password"
+            type="password"
+            value={state.password}
+            onChange={handleChange}
+            required
+            className="input-field"
+          />
+          <button type="submit" className="submit-button">Sign In</button>
+        </form>
+        <p className="error-message">{error}</p>
+      </div>
     </div>
   );
 };

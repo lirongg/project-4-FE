@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { updateItem } from '../utilities/users-api';
-import { getItemById, imageUpload ,getAllLocations } from '../utilities/items-api';
+import { getItemById, imageUpload, getAllLocations } from '../utilities/items-api';
 import { useNotification } from '../components/NotificationContext';
+import './FormStyles.css'; // Import the CSS file
 
 const EditItem = ({ user }) => {
   const { itemId } = useParams();
@@ -15,9 +16,8 @@ const EditItem = ({ user }) => {
   const [description, setDescription] = useState('');
   const [imageFile, setImageFile] = useState(null);
   const [imageURL, setImageURL] = useState('');
-  const [locations, setLocations] = useState([]); // State to hold all locations
+  const [locations, setLocations] = useState([]);
 
-  // Fetch item details when the component mounts
   useEffect(() => {
     const fetchItemDetails = async () => {
       try {
@@ -40,20 +40,11 @@ const EditItem = ({ user }) => {
     fetchItemDetails();
   }, [itemId]);
 
-  // Fetch locations from the backend
   useEffect(() => {
     const loadLocations = async () => {
       try {
         const fetchedLocations = await getAllLocations();
-        console.log('Fetched Locations:', fetchedLocations); // Log the fetched locations structure
-        
-        // Assuming fetchedLocations is an array of objects with a 'name' property
-        // If fetchedLocations is already an array of strings, just use setLocations(fetchedLocations)
-        setLocations(fetchedLocations.map(location => {
-          // Inspect the individual location objects
-          console.log('Location Object:', location);
-          return location.name || location; // Adjust based on the actual structure
-        }));
+        setLocations(fetchedLocations.map(location => location.name || location));
       } catch (error) {
         console.error('Error fetching locations:', error);
       }
@@ -62,18 +53,8 @@ const EditItem = ({ user }) => {
     loadLocations();
   }, []);
 
-  useEffect(() => {
-    console.log('Current Locations State:', locations); // Log the current state of locations
-  }, [locations]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!itemId) {
-      console.error('Item ID is missing');
-      return;
-    }
-
     const updatedItem = {};
 
     if (itemName && itemName !== initialState.item) updatedItem.item = itemName;
@@ -84,36 +65,14 @@ const EditItem = ({ user }) => {
       if (imageFile) {
         const formData = new FormData();
         formData.append('image', imageFile);
-
         const imageData = await imageUpload(formData);
         updatedItem.imageURL = imageData.url;
-        console.log('Image uploaded successfully:', imageData.url);
       }
 
       if (Object.keys(updatedItem).length > 0) {
-        const response = await updateItem(itemId, updatedItem);
-        console.log('Item updated successfully:', response);
-
-        // Constructing the detailed notification message
-        let notificationMessage = `${user.name} updated item "${initialState.item}"`;
-
-        if (itemName && itemName !== initialState.item) {
-          notificationMessage += ` to "${itemName}"`;
-        }
-
-        if (location && location !== initialState.location) {
-          notificationMessage += `, from location "${initialState.location}" to "${location}"`;
-        }
-
-        if (description && description !== initialState.description) {
-          notificationMessage += `, with new description: '${description}'`;
-        }
-
-        addNotification(notificationMessage);
-
+        await updateItem(itemId, updatedItem);
+        addNotification(`Item "${initialState.item}" updated by ${user.name}`);
         navigate('/'); // Navigate back to dashboard or profile
-      } else {
-        console.log('No changes detected');
       }
     } catch (error) {
       console.error('Error updating item:', error);
@@ -125,7 +84,7 @@ const EditItem = ({ user }) => {
   };
 
   return (
-    <div>
+    <div className="form-page">
       <h2>Edit Item</h2>
       <form onSubmit={handleSubmit}>
         <label>

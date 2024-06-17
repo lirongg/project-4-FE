@@ -1,11 +1,10 @@
-// ViewItems.jsx
-
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import DisplayItems from '../components/DisplayItem';
 import { getItems } from '../utilities/items-api';
 import Search from '../components/SearchItem';
-import DeleteItemButton from '../components/DeleteItemButton'; // Import the new component
+import DeleteItemButton from '../components/DeleteItemButton';
+import './ViewItems.css'; // Import the CSS file for styling
 
 function ViewItems() {
   const [items, setItems] = useState([]);
@@ -19,7 +18,6 @@ function ViewItems() {
     try {
       const fetchedItems = await getItems();
       setItems(fetchedItems);
-      console.log('Fetched items:', fetchedItems);
     } catch (error) {
       console.error('Error fetching items:', error);
     }
@@ -34,16 +32,18 @@ function ViewItems() {
   };
 
   return (
-    <div>
+    <div className="view-items-page">
       <h2>All Items</h2>
-      <Search setItems={setItems} />
-      <ul>
+      <div className="search-container">
+        <Search setItems={setItems} />
+      </div>
+      <ul className="items-grid">
         {items.map((item) => (
-          <div key={item._id}>
+          <li key={item._id} className="item-container">
             <DisplayItems item={item} />
-            <button onClick={() => handleRelocateClick(item._id)}>Critter Relocation</button> 
-            <DeleteItemButton itemId={item._id} onDeleteSuccess={handleDeleteSuccess}  itemName={item.item}/>
-          </div>
+            <button onClick={() => handleRelocateClick(item._id)}>Critter Relocation</button>
+            <DeleteItemButton itemId={item._id} onDeleteSuccess={handleDeleteSuccess} itemName={item.item} />
+          </li>
         ))}
       </ul>
     </div>
