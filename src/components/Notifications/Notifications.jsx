@@ -17,7 +17,6 @@ function Notifications() {
 
   return (
     <div className="notifications-section">
-      <h3>Notifications</h3>
       <ul>
         {notifications.map((notification) => (
           <li key={notification.id} className={notification.isRead ? 'read' : ''}>

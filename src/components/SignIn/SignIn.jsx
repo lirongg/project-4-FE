@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import * as usersService from "../../utilities/users-service";
 import './SignIn.css';
 
-
 function SignIn({ setUser }) {
   const [state, setState] = useState({
-    email: "",
-    password: "",
+    email: "user1@example.com",  // Default email
+    password: "password123",        // Default password
   });
 
   const [error, setError] = useState("");
@@ -30,8 +29,7 @@ function SignIn({ setUser }) {
 
   return (
     <div>
-      <div className="intro-container">
-      </div>
+      <div className="intro-container"></div>
       <div className="form-container">
         <h2>Sign In</h2>
         <form onSubmit={handleSubmit}>
@@ -59,6 +57,6 @@ function SignIn({ setUser }) {
       </div>
     </div>
   );
-};
+}
 
 export default SignIn;
