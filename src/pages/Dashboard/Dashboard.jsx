@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { getItems, getAllLocations } from '../../utilities/items-api';
-import Locations from '../Locations';
+import Locations from '../Locations/Locations';
 import CalculateItem from '../../components/CalculateItems';
-import Notifications from '../../components/Notifications';
-import { useNotification } from '../../components/NotificationContext';
+import Notifications from '../../components/Notifications/Notifications';
+import { useNotification } from '../../components/Notifications/NotificationContext';
 import './Dashboard.css';
 
 function Dashboard({ user, setUser }) {

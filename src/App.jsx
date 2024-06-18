@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
+import { Helmet } from 'react-helmet';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar.jsx';
 import AuthPage from './pages/AuthPage/AuthPage.jsx';
@@ -8,12 +8,14 @@ import Dashboard from './pages/Dashboard/Dashboard.jsx';
 import MyProfile from './pages/Profile/Profile.jsx';
 import CreateItem from './pages/CreateItem';
 import EditItem from './pages/EditItem.jsx';
-import { getUser } from './utilities/users-service';
-import ViewItems from './pages/ViewItems';
-import LocationPage from './components/LocationPage.jsx';
-import { NotificationProvider } from './components/NotificationContext';
+import ViewItems from './pages/ViewItems/ViewItems';
+import LocationPage from './components/LocationPage/LocationPage.jsx';
 import RelocateItem from './pages/RelocateItem.jsx';
-import EditProfile from './pages/EditProfile.jsx';
+import EditProfile from './pages/Profileedit/EditProfile.jsx';
+import logo from './assets/logo.png';
+import { getUser } from './utilities/users-service';
+import { NotificationProvider } from './components/Notifications/NotificationContext';
+import './App.css';
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -33,6 +35,19 @@ function App() {
 
   return (
     <div>
+      <Helmet>
+        <title>ClutterCritter</title>
+        <meta name="description" content="ClutterCritter helps you organize and find the stuff you forget." />
+        <link rel="icon" href="/favicon.ico" />
+      </Helmet>
+
+      {/* Conditionally render the logo */}
+      {!user && (
+        <div className="logo-container">
+          <img src={logo} alt="ClutterCritter Logo" className="logo" />
+        </div>
+      )}
+
       {user ? (
         <Router>
           <Navbar user={user} setUser={setUser} />

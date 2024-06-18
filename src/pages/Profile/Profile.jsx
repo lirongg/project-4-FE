@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import DisplayItems from '../../components/DisplayItem';
-import { getUserListing, deleteUser } from '../../utilities/users-api';
+import DisplayItems from '../../components/DisplayItems/DisplayItem';
+import { deleteUser } from '../../utilities/users-api';
+import { getUserListing } from '../../utilities/items-api';
 import DeleteItemButton from '../../components/DeleteItemButton';
 import "./Profile.css";
 
@@ -63,21 +64,23 @@ function MyProfile({ user, setUser }) { // Receive user and setUser as props
 
       <div className="items-container">
         <h3>My Items</h3>
-        {userItems.length > 0 ? (
-          userItems.map((item) => (
-            <div key={item._id} className="box-container">
-              <DisplayItems item={item} />
-              <div className="item-actions">
-                <DeleteItemButton itemId={item._id} onDeleteSuccess={handleDeleteSuccess}  itemName={item.item} />
+        <ul className="items-grid"> 
+          {userItems.length > 0 ? (
+            userItems.map((item) => (
+              <li key={item._id} className="item-container"> {/* Use item-container style */}
+                <DisplayItems item={item} />
+                <div className="item-actions">
                 <Link to={`/edit/${item._id}`}>
-                  <button>Tweak Tails</button>
-                </Link>
-              </div>
-            </div>
-          ))
-        ) : (
-          <p>No items found.</p>
-        )}
+                    <button>Edit</button>
+                  </Link>
+                  <DeleteItemButton itemId={item._id} onDeleteSuccess={handleDeleteSuccess} itemName={item.item} />
+                </div>
+              </li>
+            ))
+          ) : (
+            <p>No items found.</p>
+          )}
+        </ul>
       </div>
     </div>
   );

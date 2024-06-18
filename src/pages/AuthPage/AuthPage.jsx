@@ -1,6 +1,6 @@
 import { useState } from "react";
-import SignIn from "../../components/SignIn";
-import SignUp from "../../components/SignUp";
+import SignIn from "../../components/SignIn/SignIn";
+import SignUp from "../../components/SignUp/SignUp";
 import './AuthPage.css';
 
 function AuthPage({ setUser }) {

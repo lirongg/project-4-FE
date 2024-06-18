@@ -1,137 +1,135 @@
 /* General Styles for Profile Page */
 .profile-page {
-  padding: 20px;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  background-color: #f8f9fa;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-  color: #333;
-  font-size: 2em;
-  margin-bottom: 10px;
-}
-
-p {
-  color: #555;
-  font-size: 1.2em;
-}
-
-/* Button Group */
-.button-group {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.button-group button {
-  background-color: #0066cc;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.button-group button:hover {
-  background-color: #004999;
-}
-
-/* Edit Profile and Delete User Button Specific Styles */
-.edit-profile-button {
-  background-color: #007bff;
-}
-
-.delete-user-button {
-  background-color: #dc3545;
-}
-
-.delete-user-button:hover {
-  background-color: #c82333;
-}
-
-/* Items Container */
-.items-container {
-  width: 100%;
-  max-width: 800px;
-  margin-top: 20px;
-}
-
-.items-container h3 {
-  color: #333;
-  font-size: 1.5em;
-  margin-bottom: 15px;
-  text-align: center;
-}
-
-.box-container {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.item-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-}
-
-.item-actions button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 15px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.item-actions button:hover {
-  background-color: #0056b3;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .profile-page {
-      padding: 10px;
+    padding: 20px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
-
-  .items-container {
-      width: 100%;
+  
+  h2 {
+    color: #333;
+    font-size: 2em;
+    margin-bottom: 10px;
   }
-
-  .box-container {
-      padding: 15px;
+  
+  p {
+    color: #555;
+    font-size: 1.2em;
   }
-
+  
+  /* Button Group */
   .button-group {
-      flex-direction: column;
-      gap: 10px;
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .button-group button {
+    background-color: #0066cc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .button-group button:hover {
+    background-color: #004999;
+  }
+  
+  /* Edit Profile and Delete User Button Specific Styles */
+  .edit-profile-button {
+    background-color: #007bff;
+  }
+  
+  .delete-user-button {
+    background-color: #dc3545;
+  }
+  
+  .delete-user-button:hover {
+    background-color: #c82333;
+  }
+  
+  /* Items Container */
+  .items-container {
+    width: 100%;
+    max-width: 120px;
+    margin-top: 20px;
   }
 
-  .edit-profile-button, .delete-user-button {
-      width: 100%;
-      padding: 15px;
-  }
-
-  .item-actions {
-      flex-direction: column;
-      gap: 10px;
-  }
-
-  .item-actions button {
-      width: 100%;
-  }
+  .items-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Four items per row */
+    gap: 80px; /* Space between items */
+    width: 100%;
+    padding: 0;
+    list-style-type: none;
 }
+
+.item-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    text-align: center;
+}
+
+.item-container button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 150px;
+    margin-top: 5px;
+}
+
+.item-container button:hover {
+    background-color: #0056b3;
+}
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .profile-page {
+        padding: 10px;
+    }
+  
+    .items-container {
+        width: 100%;
+    }
+  
+    .box-container {
+        padding: 15px;
+    }
+  
+    .button-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+  
+    .edit-profile-button, .delete-user-button {
+        width: 100%;
+        padding: 15px;
+    }
+  
+    .item-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+  
+    .item-actions button {
+        width: 100%;
+    }
+  }
+  

@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { updateItem } from '../utilities/users-api';
-import { getItemById, imageUpload, getAllLocations } from '../utilities/items-api';
-import { useNotification } from '../components/NotificationContext';
-import './FormStyles.css'; // Import the CSS file
-
+import { getItemById, imageUpload, getAllLocations, updateItem } from '../utilities/items-api';
+import { useNotification } from '../components/Notifications/NotificationContext';
+import './FormStyles.css'; 
 const EditItem = ({ user }) => {
   const { itemId } = useParams();
   const { addNotification } = useNotification();

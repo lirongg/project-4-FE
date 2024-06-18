@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { updateUser } from '../utilities/users-api';
-import './ProfileEdit.css'; // Import the CSS file for styling
+import { updateUser } from '../../utilities/users-api';
+import './ProfileEdit.css'; 
 
-function EditProfile({ user, setUser }) { // Ensure user and setUser are received as props
+function EditProfile({ user, setUser }) {
   const navigate = useNavigate();
 
-  const [newName, setNewName] = useState(user?.name || ''); // Use optional chaining to avoid errors
+  const [newName, setNewName] = useState(user?.name || ''); 
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [error, setError] = useState('');
