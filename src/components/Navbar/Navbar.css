@@ -1,21 +1,34 @@
-/* General Styles for Navbar */
+/* Navbar Container */
 .navbar {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  background-color: #333;
+  align-items: center; /* Center items vertically */
   padding: 10px 20px;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-}
-
-.logo {
+  background-color: #444;
   color: #fff;
-  font-size: 1.2em;
-  font-weight: bold;
 }
 
+/* Logo and Welcome Text Container */
+.logo-container {
+  display: flex;
+  align-items: center; /* Center vertically */
+  gap: 10px; /* Space between the logo and welcome text */
+}
+
+.navbar-logo {
+  max-width: 50px; /* Adjust size as needed */
+  height: auto;
+}
+
+.welcome-text {
+  font-size: 1.2em;
+  color: #fff;
+}
+
+/* Navigation Links */
 .nav-links {
   display: flex;
+  align-items: center; /* Center links vertically */
   gap: 15px;
 }
 
@@ -24,49 +37,16 @@
   text-decoration: none;
   padding: 8px 15px;
   border-radius: 5px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.nav-links a:hover {
-  background-color: #444;
-  color: #fff;
-}
-
-.search-bar {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  padding: 0 20px;
-}
-
-.search-bar input {
-  width: 100%;
-  max-width: 300px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  transition: border-color 0.3s ease;
-}
-
-.search-bar input:focus {
-  border-color: #0066cc;
-}
-
-.sign-out {
-  color: #fff;
-  cursor: pointer;
-}
-
-.sign-out button {
-  background-color: #0066cc;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 15px;
-  cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.sign-out button:hover {
-  background-color: #004999;
+.nav-links a:hover {
+  background-color: #555;
+}
+
+/* Sign Out Section */
+.sign-out {
+  display: flex;
+  align-items: center; /* Center vertically */
+  margin-left: 20px; /* Space between links and sign-out */
 }

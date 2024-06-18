@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getItemById, relocateItem, getAllLocations } from '../utilities/items-api';
-import { useNotification } from '../components/NotificationContext';
-import './FormStyles.css'; // Import the CSS file for styling
+import { useNotification } from '../components/Notifications/NotificationContext';
+import './FormStyles.css'; 
 
 function RelocateItem() {
   const { id } = useParams();

@@ -1,47 +1,40 @@
-import React, { useState } from "react";
-import { signUp } from "../utilities/users-api";
-import './SignUp.css';
+import React, { useState } from 'react';
+import * as usersService from "../../utilities/users-service";
+import './SignIn.css';
 
-function SignUp() {
+
+function SignIn({ setUser }) {
   const [state, setState] = useState({
-    name: "",
     email: "",
     password: "",
   });
 
+  const [error, setError] = useState("");
+
   function handleChange(evt) {
     setState({ ...state, [evt.target.name]: evt.target.value });
+    setError("");
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await signUp(state);
-      alert("Sign up is successful! Please sign in now!");
-    } catch (error) {
-      console.log(error);
-      alert("An error occurred. Please try again!");
+      const user = await usersService.signIn(state);
+      console.log('SignIn successful:', user);
+      setUser(user);
+    } catch (err) {
+      console.error('SignIn failed:', err);
+      setError("Log in failed");
     }
   }
 
   return (
     <div>
       <div className="intro-container">
-        <h1>ClutterCritter</h1>
-        <p>We Find the Stuff You Forget!</p>
       </div>
       <div className="form-container">
-        <h2>Sign Up</h2>
+        <h2>Sign In</h2>
         <form onSubmit={handleSubmit}>
-          <label>Name:</label>
-          <input
-            name="name"
-            type="text"
-            value={state.name}
-            onChange={handleChange}
-            required
-            className="input-field"
-          />
           <label>Email:</label>
           <input
             name="email"
@@ -60,11 +53,12 @@ function SignUp() {
             required
             className="input-field"
           />
-          <button type="submit" className="submit-button">Sign Up</button>
+          <button type="submit" className="submit-button">Sign In</button>
         </form>
+        <p className="error-message">{error}</p>
       </div>
     </div>
   );
-}
+};
 
-export default SignUp;
+export default SignIn;

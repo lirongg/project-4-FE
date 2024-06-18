@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import './Locations.css'; // Import the CSS file for styling
+import './Locations.css'; 
 
 function Locations({ statistics, locations }) {
   return (

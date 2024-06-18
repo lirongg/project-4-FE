@@ -3,9 +3,29 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:3001";
 
-export function getItems(id) {
+// CRUD Operations for items
+
+export function getItems() {
   return sendRequest(`${BASE_URL}/items/`);
 }
+
+export async function getItemById(itemId) {
+  return sendRequest(`${BASE_URL}/items/item/${itemId}`);
+}
+
+export async function createItem(userInput) {
+  return sendRequest(`${BASE_URL}/items/create`, "POST", userInput);
+}
+
+export async function updateItem(itemId, userInput) {
+  return sendRequest(`${BASE_URL}/items/update/${itemId}`, "PUT", userInput);
+}
+
+export async function deleteItem(itemId) {
+  return sendRequest(`${BASE_URL}/items/delete/${itemId}`, "DELETE");
+}
+
+// Other item-related operations
 
 export async function searchItems(query) {
   const response = await fetch(`${BASE_URL}/items/search?query=${query}`);
@@ -18,13 +38,13 @@ export async function searchItems(query) {
 export async function imageUpload(formData) {
   try {
     const response = await axios.post(`${BASE_URL}/upload/image`, formData);
-    return response.data; 
+    return response.data;
   } catch (error) {
     throw new Error("Error uploading image: " + error.message);
   }
 }
 
-export function getAllLocations() {
+export async function getAllLocations() {
   return sendRequest(`${BASE_URL}/items/locations`)
     .then((response) => {
       console.log("Response:", response);
@@ -32,11 +52,11 @@ export function getAllLocations() {
     })
     .catch((error) => {
       console.error("Error fetching items by location:", error);
-      throw error; 
+      throw error;
     });
 }
 
-export function getItemsByLocation(location) {
+export async function getItemsByLocation(location) {
   return sendRequest(`${BASE_URL}/items/location/${location}`)
     .then((response) => {
       console.log("Response:", response);
@@ -44,23 +64,7 @@ export function getItemsByLocation(location) {
     })
     .catch((error) => {
       console.error("Error fetching items by location:", error);
-      throw error; 
-    });
-}
-
-export function deleteItem(id) {
-  return sendRequest(`${BASE_URL}/items/delete/${id}`, "DELETE");
-}
-
-export async function getItemById(itemid) {
-  return sendRequest(`${BASE_URL}/items/item/${itemid}`)
-    .then((response) => {
-      console.log("Response:", response);
-      return response;
-    })
-    .catch((error) => {
-      console.error("Error fetching items by itemid:", error);
-      throw error; 
+      throw error;
     });
 }
 
@@ -71,4 +75,8 @@ export async function relocateItem(itemId, newLocation) {
       console.error('Error relocating item:', error);
       throw error;
     });
+}
+
+export function getUserListing(userId) {
+  return sendRequest(`${BASE_URL}/items/${userId}`);
 }

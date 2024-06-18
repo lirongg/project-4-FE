@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { deleteItem } from '../utilities/items-api';
-import { useNotification } from '../components/NotificationContext';
+import { useNotification } from '../components/Notifications/NotificationContext';
 
 function DeleteItemButton({ itemId, onDeleteSuccess, itemName }) {
   const { addNotification } = useNotification();
@@ -22,8 +22,8 @@ function DeleteItemButton({ itemId, onDeleteSuccess, itemName }) {
   };
 
   return (
-    <button onClick={handleDelete}>
-      Banish Baggage
+    <button type ="button" onClick={handleDelete}>
+      Delete Item
     </button>
   );
 }
@@ -31,7 +31,7 @@ function DeleteItemButton({ itemId, onDeleteSuccess, itemName }) {
 DeleteItemButton.propTypes = {
   itemId: PropTypes.string.isRequired,
   onDeleteSuccess: PropTypes.func.isRequired,
-  itemName: PropTypes.string.isRequired, // Ensure this prop is passed from the parent
+  itemName: PropTypes.string.isRequired, 
 };
 
 export default DeleteItemButton;

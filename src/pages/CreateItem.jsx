@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { createItem } from "../utilities/users-api";
-import { imageUpload, getAllLocations } from "../utilities/items-api";
-import { useNotification } from '../components/NotificationContext';
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { imageUpload, getAllLocations, createItem } from "../utilities/items-api";
+import { useNotification } from '../components/Notifications/NotificationContext';
 import './FormStyles.css'; // Import the CSS file for styling
 
 function CreateItem({ user }) {
   const { addNotification } = useNotification();
+  const navigate = useNavigate(); // Initialize the navigate function
   const [newItem, setNewItem] = useState({
     item: "",
     location: "",
@@ -141,7 +142,10 @@ function CreateItem({ user }) {
           Upload Image:
           <input type="file" onChange={handleImageChange} accept="image/*" />
         </label>
-        <button type="submit">Add Item</button>
+        <div className="form-buttons">
+          <button type="submit">Add Item</button>
+          <button type="button" onClick={() => navigate(-1)}>Cancel</button> {/* Cancel button to go back */}
+        </div>
       </form>
     </div>
   );

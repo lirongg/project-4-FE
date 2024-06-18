@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getItemsByLocation } from '../utilities/items-api';
-import DisplayItems from '../components/DisplayItem';
-import DeleteItemButton from '../components/DeleteItemButton';
+import { getItemsByLocation } from '../../utilities/items-api';
+import DisplayItems from '../DisplayItems/DisplayItem.jsx';
+import DeleteItemButton from '../DeleteItemButton';
 import axios from "axios";
-import './LocationPage.css'; // Import the CSS file for styling
+import './LocationPage.css'; 
 
-const BASE_URL = "http://localhost:3001"; // Ensure this points to your backend server
+const BASE_URL = "http://localhost:3001"; 
 
 function LocationPage() {
   const { location } = useParams();
