@@ -6,7 +6,7 @@ import DeleteItemButton from '../DeleteItemButton';
 import axios from "axios";
 import './LocationPage.css'; 
 
-const BASE_URL = "http://localhost:3001"; 
+const BASE_URL = "https://project-4-be.onrender.com"; 
 
 function LocationPage() {
   const { location } = useParams();
