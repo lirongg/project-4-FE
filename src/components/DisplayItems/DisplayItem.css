@@ -1,4 +1,4 @@
-/* Styles for DisplayItems Component */
+
 .item-container {
     background-color: #ffffff;
     padding: 20px;
@@ -10,36 +10,34 @@
     gap: 10px;
     text-align: center;
     max-width: 250px;
-    margin: auto; /* Center the item container within its parent */
+    margin: auto; 
 }
 
 .item-name {
     font-size: 1.2em;
     font-weight: bold;
     color: #333;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .item-location {
     font-size: 1em;
     color: #555;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .item-description {
     font-size: 0.95em;
     color: #666;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 
-/* Ensuring all images are the same size */
 img {
     border-radius: 5px;
     margin-bottom: 10px;
     object-fit: cover;
-    width: 200px; /* Fixed width */
-    height: 200px; /* Fixed height */
-    /* These dimensions will be consistent for all images */
+    width: 200px; 
+    height: 200px; 
 }
 
 .no-image {
@@ -51,7 +49,7 @@ img {
 .created-by {
     font-size: 0.9em;
     color: #777;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 /* Responsive Design */

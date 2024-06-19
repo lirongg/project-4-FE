@@ -1,4 +1,4 @@
-/* General Styles for Edit Profile Page */
+
 .edit-profile-page {
     padding: 20px;
     font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -6,7 +6,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px; /* Reduced gap between sections */
+    gap: 15px; 
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 500px;
@@ -15,21 +15,21 @@
 
 h2 {
     color: #333;
-    font-size: 1.8em; /* Slightly smaller font size */
+    font-size: 1.8em; 
     margin-bottom: 10px;
     text-align: center;
 }
 
 .profile-section, .password-section {
     background-color: #fff;
-    padding: 15px; /* Reduced padding */
+    padding: 15px; 
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Reduced gap between internal elements */
-    margin-bottom: 15px; /* Reduced margin between sections */
+    gap: 10px; 
+    margin-bottom: 15px;
 }
 
 .profile-section h3, .password-section h3 {
@@ -41,18 +41,18 @@ h2 {
 label {
     display: flex;
     flex-direction: column;
-    font-size: 0.95em; /* Slightly smaller font size */
+    font-size: 0.95em; 
     color: #555;
     margin-bottom: 8px; /* Reduced margin */
 }
 
 input {
-    padding: 8px; /* Reduced padding */
+    padding: 8px; 
     border-radius: 5px;
     border: 1px solid #ccc;
-    font-size: 0.95em; /* Slightly smaller font size */
+    font-size: 0.95em; 
     transition: border-color 0.3s;
-    box-sizing: border-box; /* Ensure padding is included in the total width */
+    box-sizing: border-box; 
 }
 
 input:focus {

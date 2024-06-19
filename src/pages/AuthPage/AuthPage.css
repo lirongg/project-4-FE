@@ -1,9 +1,9 @@
-/* General Styles for AuthPage */
+
 .AuthPage {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 60vh;
+  height: 80vh;
   background-color: #f4f4f9;
   font-family: 'Helvetica Neue', Arial, sans-serif;
 }
@@ -14,10 +14,9 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  width: 80%; /* Increase the width to make it wider */
-  max-width: 600px; /* Set a max-width to prevent it from becoming too wide on larger screens */
-  margin: 0 auto; /* Center the container */
-}
+  width: 80%;
+  max-width: 600px; 
+  margin: 0 auto; }
 
 .toggle-button {
   margin-top: 20px;

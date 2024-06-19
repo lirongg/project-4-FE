@@ -58,7 +58,7 @@ function MyProfile({ user, setUser }) { // Receive user and setUser as props
           Edit Profile
         </button>
         <button onClick={handleDeleteUser} className="delete-user-button">
-          Delete User
+          Delete Account
         </button>
       </div>
 

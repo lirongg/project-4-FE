@@ -1,57 +1,61 @@
-/* General Styles for Locations Component */
+
 .locations {
   padding: 20px;
-  background-color: #f8f9fa; /* Light background for contrast */
+  background-color: #f8f9fa; 
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 .location-boxes {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px; /* Increased gap for more space between boxes */
+  gap: 20px; 
 }
 
 .location-item {
-  flex: 1 1 180px; /* Adjusted base width for a more comfortable fit */
+  height: 30px; 
+  flex: 0 0 180px; 
+  box-sizing: border-box; 
+  margin-bottom: 40px;
 }
 
 .location-link {
   text-decoration: none;
-  color: inherit; /* Maintain default text color */
+  color: inherit; 
 }
 
 .location-box {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #ffffff; /* White background for card look */
-  border: 1px solid #ddd; /* Lighter border for less harsh contrast */
-  border-radius: 8px; /* Slightly larger radius for smoother corners */
-  padding: 20px; /* Increased padding for a more spacious look */
+  height: 30px;
+  background-color: #ffffff; 
+  border: 1px solid #ddd; 
+  border-radius: 8px; 
+  padding: 20px; 
   text-align: center;
   cursor: pointer;
   transition: background-color 0.3s, border-color 0.3s, transform 0.3s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for elevation */
-  font-size: 1.1em; /* Slightly larger font for better readability */
-  font-weight: 600; /* Increased font weight for emphasis */
-  color: #333; /* Darker color for text contrast */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  font-size: 1.1em; 
+  font-weight: 600; 
+  color: #333; 
 }
 
 .location-box:hover {
-  background-color: #f1f3f5; /* Slightly darker background on hover */
-  border-color: #bbb; /* Darker border on hover */
-  transform: translateY(-3px); /* Lift effect on hover */
+  background-color: #f1f3f5; 
+  border-color: #bbb; 
+  transform: translateY(-3px); 
 }
 
 .location-box:active {
-  background-color: #e9ecef; /* Slightly darker for active state */
-  border-color: #aaa; /* Even darker border for active state */
-  transform: translateY(1px); /* Slight push-down effect */
+  background-color: #e9ecef; 
+  border-color: #aaa; 
+  transform: translateY(1px); 
 }
 
 .location-box i {
   margin-right: 10px;
-  font-size: 1.5em; /* Adjust icon size for prominence */
-  color: #007bff; /* Blue color for the icon */
+  font-size: 1.5em; 
+  color: #007bff; 
 }

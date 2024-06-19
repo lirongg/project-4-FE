@@ -1,4 +1,4 @@
-/* General Styles */
+
 body {
   font-family: 'Helvetica Neue', Arial, sans-serif;
   margin: 0;
@@ -21,7 +21,7 @@ a:hover {
   color: #004999;
 }
 
-/* Container Styles */
+
 .container {
   width: 90%;
   max-width: 1200px;
