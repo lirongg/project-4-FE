@@ -7,6 +7,8 @@ ClutterCritter is a MERN (MongoDB, Express.js, React.js, Node.js) web applicatio
 - **User Authentication**
   - Sign up with email and password.
   - Sign in using registered credentials.
+  - Edit profile information, including changing the username and password.
+  - Delete account functionality (CRUD operations).
 
 - **Item Management**
   - Create, read, update, and delete item records (CRUD operations).
@@ -21,7 +23,8 @@ ClutterCritter is a MERN (MongoDB, Express.js, React.js, Node.js) web applicatio
   - Quick search functionality to find items based on tags or keywords.
 
 - **Notification System**
-  - Get alerts for items that have been relocated / removed or newly created. 
+  - Get alerts for items that have been relocated or removed.
+  - Receive notifications for newly created items.
 
 ## Screenshots
 
@@ -50,3 +53,8 @@ ClutterCritter is a MERN (MongoDB, Express.js, React.js, Node.js) web applicatio
 
 Visit the deployed ClutterCritter app:
 - **Frontend URL:** [ClutterCritter](https://project-4-fe.vercel.app/)
+
+## Next Steps
+Here are some planned future enhancements for ClutterCritter:
+- Implement AI-based suggestions for item categorization.
+- Provide user analytics to track frequently misplaced items.
