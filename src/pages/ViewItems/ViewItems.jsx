@@ -40,7 +40,7 @@ function ViewItems() {
       <ul className="items-grid">
         {items.map((item) => (
           <li key={item._id} className="item-container">
-            <DisplayItems item={item} />
+            <DisplayItems item={item} showCreatedBy={true} />
             <button onClick={() => handleRelocateClick(item._id)}>
               Relocate
             </button>
