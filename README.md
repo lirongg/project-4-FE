@@ -21,8 +21,7 @@ ClutterCritter is a MERN (MongoDB, Express.js, React.js, Node.js) web applicatio
   - Quick search functionality to find items based on tags or keywords.
 
 - **Notification System**
-  - Set reminders or notifications for important items or documents.
-  - Get alerts for items that haven't been updated in a while.
+  - Get alerts for items that have been relocated / removed or newly created. 
 
 ## Screenshots
 
