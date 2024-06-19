@@ -30,13 +30,13 @@ ClutterCritter is a MERN (MongoDB, Express.js, React.js, Node.js) web applicatio
 ## Screenshots
 
 - **Sign In:**
-  ![Sign In Screenshot](https://github.com/lirongg/project-4-FE/tree/main/src/assets/signup.png)
+  ![Sign In Screenshot](https://github.com/lirongg/project-4-FE/blob/main/src/assets/signup.png)
 
 - **Dashboard:**
-  ![Dashboard Screenshot](https://github.com/lirongg/project-4-FE/tree/main/src/assets/dashboard.png)
+  ![Dashboard Screenshot](https://github.com/lirongg/project-4-FE/blob/main/src/assets/dashboard.png)
 
 - **Item Details Page:**
-  ![Item Details Screenshot](https://github.com/lirongg/project-4-FE/tree/main/src/assets/viewallitems.png)
+  ![Item Details Screenshot](https://github.com/lirongg/project-4-FE/blob/main/src/assets/viewallitems.png)
 
 ## Technologies Used
 
