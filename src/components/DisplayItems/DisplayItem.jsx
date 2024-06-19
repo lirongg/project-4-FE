@@ -12,8 +12,7 @@ function DisplayItems({ item }) {
       <p className="item-name">{item.item}</p>
       <p className="item-location">Location: {item.location}</p>
       <p className="item-description">{item.description}</p>
-      
-      <p className="created-by">Created by: {item.createdBy ? item.createdBy.name : 'Unknown'}</p>
+      <p className="created-by">Created by: {item.createdBy.name || 'Unknown'}</p>
     </div>
   );
 }

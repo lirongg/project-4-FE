@@ -41,7 +41,6 @@ function App() {
         <link rel="icon" href="/favicon.ico" />
       </Helmet>
 
-      {/* Conditionally render the logo */}
       {!user && (
         <div className="logo-container">
           <img src={logo} alt="ClutterCritter Logo" className="logo" />
@@ -56,11 +55,11 @@ function App() {
               <Route path="/profile" element={<Profile user={user} setUser={setUser} />} />
               <Route path="/profile/edit" element={<EditProfile user={user} setUser={setUser} />} />
               <Route path="/" element={<Dashboard />} />
-              <Route path="/edit/:itemId" element={<EditItem user={user} />} /> {/* Pass user as a prop */}
+              <Route path="/edit/:itemId" element={<EditItem user={user} />} /> 
               <Route path="/relocate/:id" element={<RelocateItem />} />
               <Route path="/location/:location" element={<LocationPage />} />
               <Route path="/myprofile" element={<MyProfile user={user} setUser={setUser} />} />
-              <Route path="/create" element={<CreateItem user={user} />} /> {/* Pass user as a prop */}
+              <Route path="/create" element={<CreateItem user={user} />} /> 
               <Route path="/view" element={<ViewItems />} />
             </Routes>
           </NotificationProvider>
