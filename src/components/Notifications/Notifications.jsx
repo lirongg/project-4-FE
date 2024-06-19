@@ -22,7 +22,7 @@ function Notifications() {
           <li key={notification.id} className={notification.isRead ? 'read' : ''}>
             <span>
               {notification.message.length > 10
-                ? `${notification.message.slice(0, 10)}...`
+                ? `${notification.message.slice(0, 20)}...`
                 : notification.message}
             </span>
             <button onClick={() => handleViewFull(notification)}>View Full</button>

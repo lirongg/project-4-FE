@@ -1,4 +1,4 @@
-/* General Styles for Location Page */
+
 .location-page {
     padding: 20px;
     font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -15,31 +15,30 @@ h2 {
     text-align: center;
 }
 
-/* Styles for the Upload Section */
 .upload-section {
-    position: relative; /* Position relative to allow absolute positioning of children */
+    position: relative; 
     width: 100%;
-    height: 50vh; /* Takes up 1/4 of the page height */
-    background-color: #e0e0e0; /* Fallback color for when there is no background image */
+    height: 50vh; 
+    background-color: #e0e0e0; 
     background-size: cover;
     background-position: center;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     display: flex;
-    align-items: flex-end; /* Align items at the bottom */
-    justify-content: flex-start; /* Align items to the left */
-    padding: 10px; /* Add some padding around the image */
+    align-items: flex-end; 
+    justify-content: flex-start; 
+    padding: 10px; 
 }
 
 .upload-section input[type="file"] {
-    display: none; /* Hide the default file input */
+    display: none; 
 }
 
 .upload-controls {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Align controls to the left */
+    align-items: flex-start; 
     gap: 10px;
 }
 
@@ -71,17 +70,23 @@ h2 {
 .items-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
+    gap: 70px;
 }
 
 .item-container {
-    background-color: #ffffff;
-    padding: 15px;
+    background-color: #fff;
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    height:600px;
+    gap: 10px;
+    align-items: center;
     text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
+    
 }
+
 
 .item-container:hover {
     transform: translateY(-5px);
