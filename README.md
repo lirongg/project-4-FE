@@ -50,16 +50,4 @@ ClutterCritter is a MERN (MongoDB, Express.js, React.js, Node.js) web applicatio
 ## Getting Started
 
 Visit the deployed ClutterCritter app:
-- **Frontend URL:** [ClutterCritter](https://your-deployment-url.com/)
-
-### Prerequisites
-
-To run ClutterCritter locally, you need to have:
-- Node.js and npm installed.
-- MongoDB instance running.
-
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/cluttercritter.git
+- **Frontend URL:** [ClutterCritter](https://project-4-fe.vercel.app/)
