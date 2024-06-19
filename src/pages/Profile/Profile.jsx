@@ -6,7 +6,7 @@ import { getUserListing } from '../../utilities/items-api';
 import DeleteItemButton from '../../components/DeleteItemButton';
 import "./Profile.css";
 
-function MyProfile({ user, setUser }) { // Receive user and setUser as props
+function MyProfile({ user, setUser }) { 
   const navigate = useNavigate();
   const [userItems, setUserItems] = useState([]);
 
@@ -67,7 +67,7 @@ function MyProfile({ user, setUser }) { // Receive user and setUser as props
         <ul className="items-grid"> 
           {userItems.length > 0 ? (
             userItems.map((item) => (
-              <li key={item._id} className="item-container"> {/* Use item-container style */}
+              <li key={item._id} className="item-container"> 
                 <DisplayItems item={item} />
                 <div className="item-actions">
                 <Link to={`/edit/${item._id}`}>

@@ -1,26 +1,26 @@
-// NotificationContext.jsx
 import React, { createContext, useState, useContext } from 'react';
 
 const NotificationContext = createContext();
 
-export function useNotification() {
+function useNotification() {
   return useContext(NotificationContext);
 }
 
-export function NotificationProvider({ children }) {
+function NotificationProvider({ children }) {
   const [notifications, setNotifications] = useState([]);
 
   const addNotification = (message) => {
     const newNotification = {
-      id: Date.now(), // Unique ID for each notification
+      id: Date.now(), 
       message,
-      isRead: false, // Flag to track if the notification has been viewed
+      isRead: false, 
     };
     setNotifications((prevNotifications) => [newNotification, ...prevNotifications]);
   };
 
+
   const removeNotification = (id) => {
-    setNotifications((prevNotifications) => prevNotifications.filter(n => n.id !== id));
+    setNotifications((prevNotifications) => prevNotifications.filter((n) => n.id !== id));
   };
 
   const markAsRead = (id) => {
@@ -32,8 +32,12 @@ export function NotificationProvider({ children }) {
   };
 
   return (
-    <NotificationContext.Provider value={{ notifications, addNotification, removeNotification, markAsRead }}>
+    <NotificationContext.Provider
+      value={{ notifications, addNotification, removeNotification, markAsRead }}
+    >
       {children}
     </NotificationContext.Provider>
   );
 }
+
+export { useNotification, NotificationProvider };
