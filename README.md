@@ -1,3 +1,4 @@
+![Logo](https://github.com/lirongg/project-4-FE/tree/main/src/assets/logo.png)
 # ClutterCritter
 
 ClutterCritter is a MERN (MongoDB, Express.js, React.js, Node.js) web application designed to help users find and manage misplaced items. With ClutterCritter, you can easily create, manage, and search for items you often lose track of. Whether it's keys, remote controls, or important documents, ClutterCritter helps you keep tabs on everything.
@@ -28,11 +29,14 @@ ClutterCritter is a MERN (MongoDB, Express.js, React.js, Node.js) web applicatio
 
 ## Screenshots
 
+- **Sign In:**
+  ![Sign In Screenshot](https://github.com/lirongg/project-4-FE/tree/main/src/assets/signup.png)
+
 - **Dashboard:**
-  ![Dashboard Screenshot](https://example.com/path-to-dashboard-screenshot)
+  ![Dashboard Screenshot](https://github.com/lirongg/project-4-FE/tree/main/src/assets/dashboard.png)
 
 - **Item Details Page:**
-  ![Item Details Screenshot](https://example.com/path-to-item-details-screenshot)
+  ![Item Details Screenshot](https://github.com/lirongg/project-4-FE/tree/main/src/assets/viewallitems.png)
 
 ## Technologies Used
 
